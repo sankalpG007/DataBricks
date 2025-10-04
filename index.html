@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S2S - Data Bricks Course</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="icon" href="s2s bgw.jpg">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f5f5;
+            color: #1f2937;
+        }
+        
+        .accordion-item {
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .accordion-header {
+            cursor: pointer;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+            padding: 0 1.5rem;
+        }
+        .accordion-content.open {
+            max-height: 500px; /* Adjust as needed */
+            padding: 1.5rem;
+        }
+        .rotate-icon {
+            transform: rotate(180deg);
+            transition: transform 0.3s ease;
+        }
+        .ss-logo-shadow {
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+        }
+        .perspective {
+            perspective: 1000px;
+        }
+        .preserve-3d {
+            transform-style: preserve-3d;
+        }
+        .backface-hidden {
+            backface-visibility: hidden;
+        }
+        .rotate-y-180 {
+            transform: rotateY(180deg);
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Video background styles */
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+        
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4); /* Dark overlay for text readability */
+            z-index: 1;
+        }
+        
+        /* Button animation styles */
+        .enroll-btn {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            transform: translateY(0);
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+        }
+        
+        .enroll-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.5);
+        }
+        
+        .enroll-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.7s ease;
+        }
+        
+        .enroll-btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn-text {
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+        
+        .enroll-btn:hover .btn-text {
+            transform: scale(1.05);
+        }
+        
+        .btn-icon {
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
+        }
+        
+        .enroll-btn:hover .btn-icon {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        .gradient-btn {
+            background: linear-gradient(-45deg, #8b5cf6, #6366f1, #ec4899, #f59e0b);
+            background-size: 400% 400%;
+            animation: gradientShift 5s ease infinite;
+        }
+
+        /* ADD TESTIMONIALS SCROLLING CSS RIGHT HERE */
+        @keyframes scroll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(calc(-320px * 6)); /* Move by width of 6 testimonials */
+          }
+        }
+
+        .animate-scroll {
+          animation: scroll 30s linear infinite;
+          display: flex;
+          width: max-content;
+        }
+
+        /* Pause animation on hover */
+        .animate-scroll:hover {
+          animation-play-state: paused;
+        }
+
+        /* Ensure proper spacing */
+        .w-80 {
+          width: 20rem; /* 320px */
+        }
+        /* END OF TESTIMONIALS CSS */
+
+        /* Blur header styles */
+        .blur-header {
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.85);
+            transition: all 0.3s ease;
+        }
+
+        /* Mobile-specific improvements */
+        @media (max-width: 768px) {
+            /* Header improvements for mobile */
+            .mobile-header {
+                padding: 0.75rem 1rem;
+            }
+            
+            /* Hero section mobile adjustments */
+            .hero-title {
+                font-size: 2rem;
+                line-height: 1.2;
+                margin-bottom: 1rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+                line-height: 1.4;
+            }
+            
+            /* Cards mobile adjustments */
+            .highlight-card {
+                padding: 1.5rem;
+                margin-bottom: 1rem;
+            }
+            
+            /* Course highlights mobile */
+            .course-card {
+                height: auto;
+                min-height: 280px;
+                margin-bottom: 1.5rem;
+            }
+            
+            /* Testimonials mobile */
+            .testimonial-card {
+                width: 85vw;
+                margin: 0 1rem;
+            }
+            
+            /* Dashboard images mobile */
+            .dashboard-image {
+                margin-bottom: 1.5rem;
+            }
+            
+            /* Form mobile adjustments */
+            .enrollment-form {
+                padding: 1.5rem;
+            }
+            
+            /* Button mobile sizing */
+            .mobile-btn {
+                padding: 0.75rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Extra small devices */
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 1.75rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .testimonial-card {
+                width: 90vw;
+                margin: 0 0.5rem;
+            }
+        }
+
+        /* Testimonials mobile scrolling fix */
+        @media (max-width: 768px) {
+            @keyframes scroll-mobile {
+                0% {
+                    transform: translateX(0);
+                }
+                100% {
+                    transform: translateX(calc(-280px * 6));
+                }
+            }
+            
+            .animate-scroll {
+                animation: scroll-mobile 25s linear infinite;
+            }
+            
+            .testimonial-card {
+                width: 280px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header Section - Improved for Mobile -->
+    <header class="flex justify-between items-center px-4 py-3 fixed top-0 w-full z-50 blur-header mobile-header">
+        <!-- Logo on the left - Hidden on mobile -->
+        <img src="S2S.png" class="h-12 w-auto object-contain drop-shadow-md " alt="Logo">
+        
+        <!-- Centered "Skill 2 Success" text - Responsive -->
+        <div class="text-center flex-1 sm:flex-none">
+            <h1 class="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+                Skill 2 Success Institute
+            </h1>
+            <p class="text-xs text-gray-600 mt-1 hidden md:block">Transforming Careers Through Education</p>
+        </div>
+        
+        <!-- Enroll Now button on the right - Responsive -->
+        <a href="#enroll">
+            <button class="enroll-btn gradient-btn pulse text-white px-4 py-2 sm:px-6 sm:py-3 rounded-full font-semibold transition-all duration-300 flex items-center space-x-1 sm:space-x-2 mobile-btn">
+                <span class="btn-text text-sm sm:text-base">Enroll Now</span>
+                <span class="btn-icon hidden sm:block">
+                    <i class="fas fa-arrow-right"></i>
+                </span>
+            </button>
+        </a>
+    </header>
+
+    <main>
+        <!-- Hero Section with Video Background - Improved for Mobile -->
+        <section class="relative text-white pt-24 pb-16 md:py-32 overflow-hidden">
+            <!-- Video Background -->
+            <video autoplay muted loop class="video-background">
+                <source src="DB.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            
+            <!-- Dark overlay for text readability -->
+            <div class="video-overlay"></div>
+            
+            <!-- Content (improved for mobile) -->
+            <div class="container mx-auto px-4 text-center relative z-10">
+                <h1 class="text-3xl md:text-6xl font-extrabold mb-4 md:mb-6 leading-tight drop-shadow-lg hero-title">
+                    Become a Certified in Data and AI Engineering on Data Bricks
+                </h1>
+                <p class="text-lg md:text-2xl mb-8 md:mb-12 max-w-2xl mx-auto font-thin hero-subtitle">
+                    PREPARE A DATA PRACTITIONER IN AI ERA <br> 
+                    <span class="font-bold text-yellow-200">with our 3-month hands-on training program.</span> 
+                </p>
+
+                <!-- Highlight Cards - Improved for Mobile -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 max-w-2xl mx-auto mb-8 md:mb-12">
+                    <div class="bg-white text-purple-900 rounded-2xl shadow-xl p-4 md:p-6 transform hover:scale-105 transition highlight-card">
+                        <div class="flex items-center justify-center mb-3 md:mb-4">
+                            <svg class="w-8 h-8 md:w-10 md:h-10 text-green-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 1.343-3 3v3H6l6 6 6-6h-3v-3c0-1.657-1.343-3-3-3z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl md:text-3xl font-bold text-purple-700">₹30,000</h3>
+                        <p class="text-gray-600 text-sm md:text-base">Course Fee</p>
+                    </div>
+
+                    <div class="bg-white text-purple-900 rounded-2xl shadow-xl p-4 md:p-6 transform hover:scale-105 transition highlight-card">
+                        <div class="flex items-center justify-center mb-3 md:mb-4">
+                            <svg class="w-8 h-8 md:w-10 md:h-10 text-blue-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl md:text-3xl font-bold text-purple-700">3 Months</h3>
+                        <p class="text-gray-600 text-sm md:text-base">Duration</p>
+                    </div>
+                </div>
+
+                <a href="#enroll" class="pulse scroll-smooth inline-block bg-yellow-300 hover:bg-yellow-400 text-purple-900 font-bold py-3 px-8 md:py-4 md:px-10 rounded-full text-base md:text-lg shadow-lg transition-transform duration-300 transform hover:scale-110 mobile-btn">
+                    🚀 Start Your Journey Today
+                </a>
+            </div>
+        </section>
+
+       <!-- Course Highlights Section for Databricks -->
+<section class="py-16 md:py-20 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <h2 class="text-2xl md:text-4xl font-bold text-center mb-8 md:mb-12">What You Will Master</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
+
+      <!-- Card 1 -->
+      <div class="relative group course-card">
+        <div class="relative w-full h-64 md:h-72 bg-gradient-to-br from-green-100 via-green-200 to-green-50 p-6 md:p-8 rounded-2xl shadow-xl flex flex-col items-center justify-center overflow-hidden">
+          <div class="z-10 text-center transition-all duration-500 group-hover:opacity-0">
+            <div class="bg-white shadow-lg p-3 md:p-4 rounded-full mb-4 md:mb-5 transform group-hover:scale-110 transition">
+              <svg class="w-10 h-10 md:w-14 md:h-14 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6l4 2"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl md:text-2xl font-bold mb-2 text-gray-800">Building a Big Data Mindset</h3>
+            <p class="text-gray-600 text-sm md:text-base">RDBMS to Lakehouse, Industry 5.0, Data-Driven Roles</p>
+          </div>
+          <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex items-center justify-center">
+            <img src="bigdata.png" alt="Big Data" class="w-full h-full object-contain rounded-xl border border-gray-200 shadow-lg">
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="relative group course-card">
+        <div class="relative w-full h-64 md:h-72 bg-gradient-to-br from-blue-100 via-blue-200 to-blue-50 p-6 md:p-8 rounded-2xl shadow-xl flex flex-col items-center justify-center overflow-hidden">
+          <div class="z-10 text-center transition-all duration-500 group-hover:opacity-0">
+            <div class="bg-white shadow-lg p-3 md:p-4 rounded-full mb-4 md:mb-5 transform group-hover:scale-110 transition">
+              <svg class="w-10 h-10 md:w-14 md:h-14 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h8M12 8v8"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl md:text-2xl font-bold mb-2 text-gray-800">Python for Data Engineering</h3>
+            <p class="text-gray-600 text-sm md:text-base">Python basics, Pandas, File Operations</p>
+          </div>
+          <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex items-center justify-center">
+            <img src="python.png" alt="Python" class="w-full h-full object-contain rounded-xl border border-gray-200 shadow-lg">
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="relative group course-card">
+        <div class="relative w-full h-64 md:h-72 bg-gradient-to-br from-purple-100 via-purple-200 to-purple-50 p-6 md:p-8 rounded-2xl shadow-xl flex flex-col items-center justify-center overflow-hidden">
+          <div class="z-10 text-center transition-all duration-500 group-hover:opacity-0">
+            <div class="bg-white shadow-lg p-3 md:p-4 rounded-full mb-4 md:mb-5 transform group-hover:scale-110 transition">
+              <svg class="w-10 h-10 md:w-14 md:h-14 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl md:text-2xl font-bold mb-2 text-gray-800">SQL for Data Engineering</h3>
+            <p class="text-gray-600 text-sm md:text-base">SQL basics, Delta Lake operations</p>
+          </div>
+          <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex items-center justify-center">
+            <img src="sql.png" alt="SQL" class="w-full h-full object-contain rounded-xl border border-gray-200 shadow-lg">
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="relative group course-card">
+        <div class="relative w-full h-64 md:h-72 bg-gradient-to-br from-pink-100 via-pink-200 to-pink-50 p-6 md:p-8 rounded-2xl shadow-xl flex flex-col items-center justify-center overflow-hidden">
+          <div class="z-10 text-center transition-all duration-500 group-hover:opacity-0">
+            <div class="bg-white shadow-lg p-3 md:p-4 rounded-full mb-4 md:mb-5 transform group-hover:scale-110 transition">
+              <svg class="w-10 h-10 md:w-14 md:h-14 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl md:text-2xl font-bold mb-2 text-gray-800">Spark for Data Engineering</h3>
+            <p class="text-gray-600 text-sm md:text-base">Hadoop to Spark, Data Processing</p>
+          </div>
+          <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex items-center justify-center">
+            <img src="spark.png" alt="Spark" class="w-full h-full object-contain rounded-xl border border-gray-200 shadow-lg">
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="relative group course-card">
+        <div class="relative w-full h-64 md:h-72 bg-gradient-to-br from-yellow-100 via-yellow-200 to-yellow-50 p-6 md:p-8 rounded-2xl shadow-xl flex flex-col items-center justify-center overflow-hidden">
+          <div class="z-10 text-center transition-all duration-500 group-hover:opacity-0">
+            <div class="bg-white shadow-lg p-3 md:p-4 rounded-full mb-4 md:mb-5 transform group-hover:scale-110 transition">
+              <svg class="w-10 h-10 md:w-14 md:h-14 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl md:text-2xl font-bold mb-2 text-gray-800">Databricks Lakehouse</h3>
+            <p class="text-gray-600 text-sm md:text-base">Intro to Databricks Data Intelligence</p>
+          </div>
+          <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex items-center justify-center">
+            <img src="lakehouse.png" alt="Lakehouse" class="w-full h-full object-contain rounded-xl border border-gray-200 shadow-lg">
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="relative group course-card">
+        <div class="relative w-full h-64 md:h-72 bg-gradient-to-br from-indigo-100 via-indigo-200 to-indigo-50 p-6 md:p-8 rounded-2xl shadow-xl flex flex-col items-center justify-center overflow-hidden">
+          <div class="z-10 text-center transition-all duration-500 group-hover:opacity-0">
+            <div class="bg-white shadow-lg p-3 md:p-4 rounded-full mb-4 md:mb-5 transform group-hover:scale-110 transition">
+              <svg class="w-10 h-10 md:w-14 md:h-14 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl md:text-2xl font-bold mb-2 text-gray-800">Lakeflow Data Ingestion</h3>
+            <p class="text-gray-600 text-sm md:text-base">Data ingestion patterns, Auto Loader</p>
+          </div>
+          <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex items-center justify-center">
+            <img src="lakeflow.png" alt="Data Ingestion" class="w-full h-full object-contain rounded-xl border border-gray-200 shadow-lg">
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 7 -->
+      <div class="relative group course-card">
+        <div class="relative w-full h-64 md:h-72 bg-gradient-to-br from-red-100 via-red-200 to-red-50 p-6 md:p-8 rounded-2xl shadow-xl flex flex-col items-center justify-center overflow-hidden">
+          <div class="z-10 text-center transition-all duration-500 group-hover:opacity-0">
+            <div class="bg-white shadow-lg p-3 md:p-4 rounded-full mb-4 md:mb-5 transform group-hover:scale-110 transition">
+              <svg class="w-10 h-10 md:w-14 md:h-14 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl md:text-2xl font-bold mb-2 text-gray-800">Lakeflow Declarative Pipeline</h3>
+            <p class="text-gray-600 text-sm md:text-base">Building robust data pipelines</p>
+          </div>
+          <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex items-center justify-center">
+            <img src="pipeline.png" alt="Data Pipeline" class="w-full h-full object-contain rounded-xl border border-gray-200 shadow-lg">
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 8 -->
+      <div class="relative group course-card">
+        <div class="relative w-full h-64 md:h-72 bg-gradient-to-br from-teal-100 via-teal-200 to-teal-50 p-6 md:p-8 rounded-2xl shadow-xl flex flex-col items-center justify-center overflow-hidden">
+          <div class="z-10 text-center transition-all duration-500 group-hover:opacity-0">
+            <div class="bg-white shadow-lg p-3 md:p-4 rounded-full mb-4 md:mb-5 transform group-hover:scale-110 transition">
+              <svg class="w-10 h-10 md:w-14 md:h-14 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl md:text-2xl font-bold mb-2 text-gray-800">Spark Optimization & Unity Catalog</h3>
+            <p class="text-gray-600 text-sm md:text-base">Performance tuning, Data governance</p>
+          </div>
+          <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex items-center justify-center">
+            <img src="optimization.png" alt="Spark Optimization" class="w-full h-full object-contain rounded-xl border border-gray-200 shadow-lg">
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 9 -->
+      <div class="relative group course-card">
+        <div class="relative w-full h-64 md:h-72 bg-gradient-to-br from-orange-100 via-orange-200 to-orange-50 p-6 md:p-8 rounded-2xl shadow-xl flex flex-col items-center justify-center overflow-hidden">
+          <div class="z-10 text-center transition-all duration-500 group-hover:opacity-0">
+            <div class="bg-white shadow-lg p-3 md:p-4 rounded-full mb-4 md:mb-5 transform group-hover:scale-110 transition">
+              <svg class="w-10 h-10 md:w-14 md:h-14 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl md:text-2xl font-bold mb-2 text-gray-800">Gen AI Basics on Databricks</h3>
+            <p class="text-gray-600 text-sm md:text-base">AI/ML integration, Model deployment</p>
+          </div>
+          <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex items-center justify-center">
+            <img src="genai.png" alt="Gen AI" class="w-full h-full object-contain rounded-xl border border-gray-200 shadow-lg">
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 10 -->
+      <div class="relative group course-card">
+        <div class="relative w-full h-64 md:h-72 bg-gradient-to-br from-cyan-100 via-cyan-200 to-cyan-50 p-6 md:p-8 rounded-2xl shadow-xl flex flex-col items-center justify-center overflow-hidden">
+          <div class="z-10 text-center transition-all duration-500 group-hover:opacity-0">
+            <div class="bg-white shadow-lg p-3 md:p-4 rounded-full mb-4 md:mb-5 transform group-hover:scale-110 transition">
+              <svg class="w-10 h-10 md:w-14 md:h-14 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl md:text-2xl font-bold mb-2 text-gray-800">Capstone Project</h3>
+            <p class="text-gray-600 text-sm md:text-base">End-to-end real-world project</p>
+          </div>
+          <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex items-center justify-center">
+            <img src="capstone.png" alt="Capstone Project" class="w-full h-full object-contain rounded-xl border border-gray-200 shadow-lg">
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 11 -->
+      <div class="relative group course-card">
+        <div class="relative w-full h-64 md:h-72 bg-gradient-to-br from-gray-100 via-gray-200 to-gray-50 p-6 md:p-8 rounded-2xl shadow-xl flex flex-col items-center justify-center overflow-hidden">
+          <div class="z-10 text-center transition-all duration-500 group-hover:opacity-0">
+            <div class="bg-white shadow-lg p-3 md:p-4 rounded-full mb-4 md:mb-5 transform group-hover:scale-110 transition">
+              <svg class="w-10 h-10 md:w-14 md:h-14 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl md:text-2xl font-bold mb-2 text-gray-800">Mock Test & Interview Prep</h3>
+            <p class="text-gray-600 text-sm md:text-base">Career guidance, Interview questions</p>
+          </div>
+          <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex items-center justify-center">
+            <img src="interview.png" alt="Interview Prep" class="w-full h-full object-contain rounded-xl border border-gray-200 shadow-lg">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+        <!-- Dashboard Gallery Section - Improved for Mobile -->
+        <section class="py-16 md:py-20 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <h2 class="text-2xl md:text-4xl font-bold text-center mb-8 md:mb-12">DataBrick Dashboards You'll Build</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                    <div class="bg-white rounded-2xl shadow-lg p-4 dashboard-image">
+                        <img src="Databricks Dashboard.png" alt="Power BI Dashboard" class="rounded-xl w-full h-auto object-cover border border-gray-200">
+                    </div>
+                    <div class="bg-white rounded-2xl shadow-lg p-4 dashboard-image">
+                        <img src="Databricks Genie.png" alt="Tableau Dashboard" class="rounded-xl w-full h-auto object-cover border border-gray-200">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+       <!-- Databricks Detailed Syllabus Section -->
+<section class="py-16 md:py-20 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <h2 class="text-2xl md:text-4xl font-bold text-center mb-8 md:mb-12">Detailed Syllabus</h2>
+    <div class="max-w-3xl mx-auto rounded-lg shadow-lg bg-white overflow-hidden">
+
+      <!-- 1. Big Data Mindset -->
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion('bigdata-syllabus')">
+          <h3 class="text-base md:text-lg font-semibold text-purple-700">1. Big Data Mindset</h3>
+          <svg class="w-5 h-5 md:w-6 md:h-6 transform transition-transform" id="bigdata-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </div>
+        <div id="bigdata-syllabus" class="accordion-content">
+          <ul class="list-disc list-inside text-gray-600 space-y-2 text-sm md:text-base">
+            <li>Evolution of data systems (RDBMS → Lakehouse)</li>
+            <li>Big Data mindset & industry shifts</li>
+            <li>Modern Data Engineering roles</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 2. Python for Data Engineering -->
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion('python-syllabus')">
+          <h3 class="text-base md:text-lg font-semibold text-purple-700">2. Python for Data Engineering</h3>
+          <svg class="w-5 h-5 md:w-6 md:h-6 transform transition-transform" id="python-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </div>
+        <div id="python-syllabus" class="accordion-content">
+          <ul class="list-disc list-inside text-gray-600 space-y-2 text-sm md:text-base">
+            <li>Python syntax, control flow, functions, file I/O, string/date handling</li>
+            <li>Pandas, reading/writing files</li>
+            <li>Error handling</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 3. SQL for Data Engineering -->
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion('sql-syllabus')">
+          <h3 class="text-base md:text-lg font-semibold text-purple-700">3. SQL for Data Engineering</h3>
+          <svg class="w-5 h-5 md:w-6 md:h-6 transform transition-transform" id="sql-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </div>
+        <div id="sql-syllabus" class="accordion-content">
+          <ul class="list-disc list-inside text-gray-600 space-y-2 text-sm md:text-base">
+            <li>SELECT, WHERE, GROUP BY, HAVING, JOINs, subqueries, CTEs</li>
+            <li>Window functions, CASE/WHEN, PIVOT, nested queries</li>
+            <li>SQL Project</li>
+            <li>Delta Table components, key features & architecture</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 4. Spark Foundations -->
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion('spark-syllabus')">
+          <h3 class="text-base md:text-lg font-semibold text-purple-700">4. Spark Foundations</h3>
+          <svg class="w-5 h-5 md:w-6 md:h-6 transform transition-transform" id="spark-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </div>
+        <div id="spark-syllabus" class="accordion-content">
+          <ul class="list-disc list-inside text-gray-600 space-y-2 text-sm md:text-base">
+            <li>Hadoop vs Spark</li>
+            <li>RDD vs DataFrame</li>
+            <li>Lazy evaluation, transformations & actions</li>
+            <li>Spark APIs overview</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 5. Databricks Lakehouse Architecture -->
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion('lakehouse-syllabus')">
+          <h3 class="text-base md:text-lg font-semibold text-purple-700">5. Databricks Lakehouse Architecture</h3>
+          <svg class="w-5 h-5 md:w-6 md:h-6 transform transition-transform" id="lakehouse-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </div>
+        <div id="lakehouse-syllabus" class="accordion-content">
+          <ul class="list-disc list-inside text-gray-600 space-y-2 text-sm md:text-base">
+            <li>Lake vs warehouse vs lakehouse</li>
+            <li>Control vs data plane, clusters, runtime versions</li>
+            <li>Notebooks, multi-language support</li>
+            <li>Repos, GitOps, notebook sharing & execution</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 6. Data Ingestion with Lakeflow -->
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion('lakeflow-syllabus')">
+          <h3 class="text-base md:text-lg font-semibold text-purple-700">6. Data Ingestion with Lakeflow</h3>
+          <svg class="w-5 h-5 md:w-6 md:h-6 transform transition-transform" id="lakeflow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </div>
+        <div id="lakeflow-syllabus" class="accordion-content">
+          <ul class="list-disc list-inside text-gray-600 space-y-2 text-sm md:text-base">
+            <li>Lakeflow Connect concepts</li>
+            <li>Batch, incremental batch & streaming batch</li>
+            <li>Enterprise data ingestion approaches</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 7. Declarative Pipelines -->
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion('pipeline-syllabus')">
+          <h3 class="text-base md:text-lg font-semibold text-purple-700">7. Declarative Pipelines: Data Transformation & Validation</h3>
+          <svg class="w-5 h-5 md:w-6 md:h-6 transform transition-transform" id="pipeline-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </div>
+        <div id="pipeline-syllabus" class="accordion-content">
+          <ul class="list-disc list-inside text-gray-600 space-y-2 text-sm md:text-base">
+            <li>What are declarative pipelines & how they work</li>
+            <li>Dataset types</li>
+            <li>Streaming & materialized view overview</li>
+            <li>Temporary views, compute</li>
+            <li>Data quality & expectations</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 8. Performance Optimization & Unity Catalog -->
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion('optimization-syllabus')">
+          <h3 class="text-base md:text-lg font-semibold text-purple-700">8. Databricks Performance Optimization & Unity Catalog</h3>
+          <svg class="w-5 h-5 md:w-6 md:h-6 transform transition-transform" id="optimization-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </div>
+        <div id="optimization-syllabus" class="accordion-content">
+          <ul class="list-disc list-inside text-gray-600 space-y-2 text-sm md:text-base">
+            <li>Spark architecture & foundation design</li>
+            <li>Code optimization & cluster tuning</li>
+            <li>Metastores, catalogs, schemas, tables</li>
+            <li>Permissions & object hierarchy</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 9. Gen AI Basics on Databricks -->
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion('genai-syllabus')">
+          <h3 class="text-base md:text-lg font-semibold text-purple-700">9. Gen AI Basics on Databricks</h3>
+          <svg class="w-5 h-5 md:w-6 md:h-6 transform transition-transform" id="genai-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </div>
+        <div id="genai-syllabus" class="accordion-content">
+          <ul class="list-disc list-inside text-gray-600 space-y-2 text-sm md:text-base">
+            <li>Introduction to Gen AI</li>
+            <li>Prompt engineering techniques</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 10. Capstone Project -->
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion('capstone-syllabus')">
+          <h3 class="text-base md:text-lg font-semibold text-purple-700">10. Capstone Project Implementation</h3>
+          <svg class="w-5 h-5 md:w-6 md:h-6 transform transition-transform" id="capstone-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </div>
+        <div id="capstone-syllabus" class="accordion-content">
+          <ul class="list-disc list-inside text-gray-600 space-y-2 text-sm md:text-base">
+            <li>Bronze/Silver/Gold pipeline creation</li>
+            <li>Transformations & quality checks</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 11. Mock Exam & Feedback -->
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion('mock-syllabus')">
+          <h3 class="text-base md:text-lg font-semibold text-purple-700">11. Mock Exam & Feedback</h3>
+          <svg class="w-5 h-5 md:w-6 md:h-6 transform transition-transform" id="mock-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </div>
+        <div id="mock-syllabus" class="accordion-content">
+          <ul class="list-disc list-inside text-gray-600 space-y-2 text-sm md:text-base">
+            <li>Full-length mock test</li>
+            <li>Discussion & exam tips</li>
+            <li>Open Q&A session</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Accordion Script -->
+<script>
+  function toggleAccordion(id) {
+    const content = document.getElementById(id);
+    const icon = document.getElementById(id.replace('syllabus', 'icon'));
+
+    if (content.classList.contains("max-h-0")) {
+      content.classList.remove("max-h-0", "overflow-hidden");
+      content.classList.add("p-4");
+      icon.classList.add("rotate-180");
+    } else {
+      content.classList.add("max-h-0", "overflow-hidden");
+      content.classList.remove("p-4");
+      icon.classList.remove("rotate-180");
+    }
+  }
+
+  // Initialize collapsed state
+  document.querySelectorAll(".accordion-content").forEach(el => {
+    el.classList.add("max-h-0", "overflow-hidden", "transition-all", "duration-500");
+  });
+</script>
+
+
+        <!-- Testimonials Section - Improved for Mobile -->
+        <section class="py-16 md:py-20 bg-purple-700 text-white">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-2xl md:text-4xl font-bold mb-8 md:mb-12">Review of previous session</h2>
+
+                <!-- Scrolling Wrapper -->
+                <div class="overflow-hidden relative">
+                    <div class="flex animate-scroll">
+                        
+                        <!-- First set of testimonials -->
+                        <div class="flex">
+                            <!-- Each testimonial -->
+                            <div class="w-80 mx-4 flex-shrink-0 testimonial-card">
+                                <div class="bg-purple-800 p-6 md:p-8 rounded-2xl shadow-lg flex flex-col items-center">
+                                    <img src="niharika.jpg" alt="Niharika" class="w-16 h-16 md:w-24 md:h-24 rounded-full mb-3 md:mb-4 object-cover border-4 border-white shadow-md">
+                                    <p class="text-base md:text-lg italic mb-3 md:mb-4">"The Databricks course gave me a complete shift in mindset. I now understand Big Data and Lakehouse architecture in a practical way, and I’m applying it directly at work."</p>
+                                    <p class="font-semibold text-yellow-300 text-sm md:text-base">- Niharika</p>
+                                </div>
+                            </div>
+
+                            <!-- Repeat for other testimonials with same mobile classes -->
+                            <div class="w-80 mx-4 flex-shrink-0 testimonial-card">
+                                <div class="bg-purple-800 p-6 md:p-8 rounded-2xl shadow-lg flex flex-col items-center">
+                                    <img src="pratik.jpg" alt="Prateek" class="w-16 h-16 md:w-24 md:h-24 rounded-full mb-3 md:mb-4 object-cover border-4 border-white shadow-md">
+                                    <p class="text-base md:text-lg italic mb-3 md:mb-4">""</p>
+                                    <p class="font-semibold text-yellow-300 text-sm md:text-base">- Prateek</p>
+                                </div>
+                            </div>
+
+
+                            
+          <div class="w-80 mx-4 flex-shrink-0">
+            <div class="bg-purple-800 p-8 rounded-2xl shadow-lg flex flex-col items-center">
+              <img src="Borkar.jpg" alt="Borkar" class="w-24 h-24 rounded-full mb-4 object-cover border-4 border-white shadow-md">
+              <p class="text-lg italic mb-4">"I always struggled to connect SQL and Big Data. This course explained Delta tables, performance tuning, and Unity Catalog in such a simple way. Highly recommended!"</p>
+              <p class="font-semibold text-yellow-300">- Borkar</p>
+            </div>
+          </div>
+
+          <div class="w-80 mx-4 flex-shrink-0">
+            <div class="bg-purple-800 p-8 rounded-2xl shadow-lg flex flex-col items-center">
+              <img src="girl.jpg" alt="Saloni" class="w-24 h-24 rounded-full mb-4 object-cover border-4 border-white shadow-md">
+              <p class="text-lg italic mb-4">"From Python basics to GenAI on Databricks, the curriculum is futuristic. The capstone project on Bronze-Silver-Gold pipelines gave me real confidence in end-to-end workflows."</p>
+              <p class="font-semibold text-yellow-300">- Saloni</p>
+            </div>
+          </div>
+
+          <div class="w-80 mx-4 flex-shrink-0">
+            <div class="bg-purple-800 p-8 rounded-2xl shadow-lg flex flex-col items-center">
+              <img src="beard.jpg" alt="Ajay" class="w-24 h-24 rounded-full mb-4 object-cover border-4 border-white shadow-md">
+              <p class="text-lg italic mb-4">"The mock exam and interview prep were exactly what I needed. This course is not just theory—it’s career-ready training for modern data engineering."</p>
+              <p class="font-semibold text-yellow-300">- Ajay</p>
+            </div>
+          </div>
+
+          <div class="w-80 mx-4 flex-shrink-0">
+            <div class="bg-purple-800 p-8 rounded-2xl shadow-lg flex flex-col items-center">
+              <img src="meenal.jpg" alt="Meenal" class="w-24 h-24 rounded-full mb-4 object-cover border-4 border-white shadow-md">
+              <p class="text-lg italic mb-4">"The projects and real-life case studies really boosted my confidence."</p>
+              <p class="font-semibold text-yellow-300">- Meenal</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Duplicate set for seamless loop -->
+        <div class="flex">
+          <div class="w-80 mx-4 flex-shrink-0">
+            <div class="bg-purple-800 p-8 rounded-2xl shadow-lg flex flex-col items-center">
+              <img src="niharika.jpg" alt="Niharika" class="w-24 h-24 rounded-full mb-4 object-cover border-4 border-white shadow-md">
+              <p class="text-lg italic mb-4">"The Databricks course gave me a complete shift in mindset. I now understand Big Data and Lakehouse architecture in a practical way, and I’m applying it directly at work."</p>
+              <p class="font-semibold text-yellow-300">- Niharika</p>
+            </div>
+          </div>
+
+          <div class="w-80 mx-4 flex-shrink-0">
+            <div class="bg-purple-800 p-8 rounded-2xl shadow-lg flex flex-col items-center">
+              <img src="pratik.jpg" alt="Prateek" class="w-24 h-24 rounded-full mb-4 object-cover border-4 border-white shadow-md">
+              <p class="text-lg italic mb-4">"The hands-on labs with Spark and Lakeflow were amazing. I had zero prior exposure to Databricks, but now I feel confident building real-world pipelines."</p>
+              <p class="font-semibold text-yellow-300">- Prateek</p>
+            </div>
+          </div>
+
+          <div class="w-80 mx-4 flex-shrink-0">
+            <div class="bg-purple-800 p-8 rounded-2xl shadow-lg flex flex-col items-center">
+              <img src="Borkar.jpg" alt="Borkar" class="w-24 h-24 rounded-full mb-4 object-cover border-4 border-white shadow-md">
+              <p class="text-lg italic mb-4">""</p>
+              <p class="font-semibold text-yellow-300">- Borkar</p>
+            </div>
+          </div>
+
+          <div class="w-80 mx-4 flex-shrink-0">
+            <div class="bg-purple-800 p-8 rounded-2xl shadow-lg flex flex-col items-center">
+              <img src="girl.jpg" alt="Saloni" class="w-24 h-24 rounded-full mb-4 object-cover border-4 border-white shadow-md">
+              <p class="text-lg italic mb-4">"From Python basics to GenAI on Databricks, the curriculum is futuristic. The capstone project on Bronze-Silver-Gold pipelines gave me real confidence in end-to-end workflows."</p>
+              <p class="font-semibold text-yellow-300">- Saloni</p>
+            </div>
+          </div>
+
+          <div class="w-80 mx-4 flex-shrink-0">
+            <div class="bg-purple-800 p-8 rounded-2xl shadow-lg flex flex-col items-center">
+              <img src="beard.jpg" alt="Ajay" class="w-24 h-24 rounded-full mb-4 object-cover border-4 border-white shadow-md">
+              <p class="text-lg italic mb-4">"The mock exam and interview prep were exactly what I needed. This course is not just theory—it’s career-ready training for modern data engineering."</p>
+              <p class="font-semibold text-yellow-300">- Ajay</p>
+            </div>
+          </div>
+
+          <div class="w-80 mx-4 flex-shrink-0">
+            <div class="bg-purple-800 p-8 rounded-2xl shadow-lg flex flex-col items-center">
+              <img src="meenal.jpg" alt="Meenal" class="w-24 h-24 rounded-full mb-4 object-cover border-4 border-white shadow-md">
+              <p class="text-lg italic mb-4">"The projects and real-life case studies really boosted my confidence."</p>
+              <p class="font-semibold text-yellow-300">- Meenal</p>
+            </div>
+          </div>
+        </div>
+
+                            <!-- Add remaining testimonials with same pattern -->
+                            
+                        </div>
+
+                        <!-- Duplicate set for seamless loop -->
+                        <div class="flex">
+                            <!-- Duplicate testimonials here -->
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Enrollment Form - Improved for Mobile -->
+        <section id="enroll" class="py-16 md:py-20 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="max-w-xl mx-auto bg-white p-6 md:p-12 rounded-2xl shadow-xl enrollment-form">
+                    <h2 class="text-2xl md:text-3xl font-bold text-center mb-2">Ready to Enroll?</h2>
+                    <p class="text-center text-gray-600 mb-6 md:mb-8 text-sm md:text-base">Fill out the form below and we'll get back to you with all the details.</p>
+
+                    <form id="enrollment-form" onsubmit="handleFormSubmit(event)">
+                        <div class="mb-4 md:mb-6">
+                            <label for="name" class="block text-sm font-semibold text-gray-700 mb-2">Full Name</label>
+                            <input type="text" id="name" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all duration-200 text-sm md:text-base" required>
+                        </div>
+                        <div class="mb-4 md:mb-6">
+                            <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">Email Address</label>
+                            <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all duration-200 text-sm md:text-base" required>
+                        </div>
+                        <div class="mb-4 md:mb-6">
+                            <label for="phone" class="block text-sm font-semibold text-gray-700 mb-2">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all duration-200 text-sm md:text-base" required>
+                        </div>
+                        <div class="mb-4 md:mb-6">
+                            <label for="phone" class="block text-sm font-semibold text-gray-700 mb-2">Whatsapp Number</label>
+                            <input type="tel" id="whatsapp" name="whatsapp" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all duration-200 text-sm md:text-base" required>
+                        </div>
+                        <div class="mb-4 md:mb-6">
+                            <label for="name" class="block text-sm font-semibold text-gray-700 mb-2">College Name</label>
+                            <input type="text" id="college" name="college" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all duration-200 text-sm md:text-base" required>
+                        </div>
+                        <div class="mb-4 md:mb-6">
+                            <label for="name" class="block text-sm font-semibold text-gray-700 mb-2">Qualification and Passing Year</label>
+                            <input type="text" id="qualification" name="qualification" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all duration-200 text-sm md:text-base" required>
+                        </div>
+                        <div class="mb-4 md:mb-6">
+                            <label for="message" class="block text-sm font-semibold text-gray-700 mb-2">Your Message (Optional)</label>
+                            <textarea id="message" name="message" rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all duration-200 text-sm md:text-base"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 rounded-lg shadow-lg transition-transform duration-300 transform hover:scale-105 text-sm md:text-base">
+                            Submit Inquiry
+                        </button>
+                    </form>
+                    <div id="status-message" class="mt-4 text-center text-sm font-medium hidden"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6 md:py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-sm md:text-base">&copy; 2025 SS Skill 2 Success. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Your existing JavaScript remains the same
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwU02I3WyUF_fiuc4MRuD_YFtllzzN4Eh9xLJXELbS7pq17VeNBVe1csXX0criokN2L/exec";
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const form = event.target;
+            const formData = new FormData(form);
+
+            const params = new URLSearchParams();
+            for (const pair of formData.entries()) {
+                params.append(pair[0], pair[1]);
+            }
+
+            fetch(SCRIPT_URL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+                },
+                body: params.toString()
+            })
+            .then(async res => {
+                const json = await res.json().catch(() => null);
+                if (res.ok && json && json.status === "success") {
+                    const statusMessage = document.getElementById('status-message');
+                    statusMessage.textContent = "✅ Thank you! Your inquiry has been recorded.";
+                    statusMessage.classList.remove('hidden', 'text-red-500');
+                    statusMessage.classList.add('text-green-500');
+                    form.reset();
+                } else {
+                    throw new Error(json && json.message ? json.message : 'Server error');
+                }
+            })
+            .catch(err => {
+                console.error("Submission error:", err);
+                const statusMessage = document.getElementById('status-message');
+                statusMessage.textContent = "❌ Something went wrong. Please try again.";
+                statusMessage.classList.remove('hidden', 'text-green-500');
+                statusMessage.classList.add('text-red-500');
+            });
+        }
+
+        function toggleAccordion(id) {
+            const content = document.getElementById(id);
+            const icon = document.getElementById(id.replace('-syllabus', '-icon'));
+            const isOpen = content.classList.contains('open');
+
+            if (isOpen) {
+                content.classList.remove('open');
+                icon.classList.remove('rotate-icon');
+            } else {
+                content.classList.add('open');
+                icon.classList.add('rotate-icon');
+            }
+        }
+    </script>
+</body>
+</html>
