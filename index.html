@@ -16,7 +16,12 @@
             background-color: #f5f5f5;
             color: #1f2937;
         }
-        
+        /* New style for the dashed tear-off line */
+        .dashed-divider {
+            border-top: 2px dashed rgba(255, 255, 255, 0.4);
+            margin: 2rem 0;
+            position: relative;
+        }
         .accordion-item {
             border-bottom: 1px solid #e5e7eb;
         }
@@ -321,35 +326,12 @@
             <!-- Content (improved for mobile) -->
             <div class="container mx-auto px-4 text-center relative z-10">
                 <h1 class="text-3xl md:text-6xl font-extrabold mb-4 md:mb-6 leading-tight drop-shadow-lg hero-title">
-                    Become a Certified in Data and AI Engineering on Data Bricks
+                    Become a Certified in AI & Data Engineering on DataBricks
                 </h1>
                 <p class="text-lg md:text-2xl mb-8 md:mb-12 max-w-2xl mx-auto font-thin hero-subtitle">
-                    PREPARE A DATA PRACTITIONER IN AI ERA <br> 
+                    Become AI & Data PRACTITIONER IN AI ERA <br> 
                     <span class="font-bold text-yellow-200">with our 3-month hands-on training program.</span> 
                 </p>
-
-                <!-- Highlight Cards - Improved for Mobile -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 max-w-2xl mx-auto mb-8 md:mb-12">
-                    <div class="bg-white text-purple-900 rounded-2xl shadow-xl p-4 md:p-6 transform hover:scale-105 transition highlight-card">
-                        <div class="flex items-center justify-center mb-3 md:mb-4">
-                            <svg class="w-8 h-8 md:w-10 md:h-10 text-green-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 1.343-3 3v3H6l6 6 6-6h-3v-3c0-1.657-1.343-3-3-3z"/>
-                            </svg>
-                        </div>
-                        <h3 class="text-2xl md:text-3xl font-bold text-purple-700">₹30,000</h3>
-                        <p class="text-gray-600 text-sm md:text-base">Course Fee</p>
-                    </div>
-
-                    <div class="bg-white text-purple-900 rounded-2xl shadow-xl p-4 md:p-6 transform hover:scale-105 transition highlight-card">
-                        <div class="flex items-center justify-center mb-3 md:mb-4">
-                            <svg class="w-8 h-8 md:w-10 md:h-10 text-blue-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                            </svg>
-                        </div>
-                        <h3 class="text-2xl md:text-3xl font-bold text-purple-700">3 Months</h3>
-                        <p class="text-gray-600 text-sm md:text-base">Duration</p>
-                    </div>
-                </div>
 
                 <a href="#enroll" class="pulse scroll-smooth inline-block bg-yellow-300 hover:bg-yellow-400 text-purple-900 font-bold py-3 px-8 md:py-4 md:px-10 rounded-full text-base md:text-lg shadow-lg transition-transform duration-300 transform hover:scale-110 mobile-btn">
                     🚀 Start Your Journey Today
@@ -933,114 +915,238 @@
                 </div>
             </div>
         </section>
-
-        <!-- Enrollment Form - Improved for Mobile -->
         <section id="enroll" class="py-16 md:py-20 bg-gray-50">
-            <div class="container mx-auto px-4">
-                <div class="max-w-xl mx-auto bg-white p-6 md:p-12 rounded-2xl shadow-xl enrollment-form">
-                    <h2 class="text-2xl md:text-3xl font-bold text-center mb-2">Ready to Enroll?</h2>
-                    <p class="text-center text-gray-600 mb-6 md:mb-8 text-sm md:text-base">Fill out the form below and we'll get back to you with all the details.</p>
+    <div class="container mx-auto px-4">
+        <div class="max-w-xl mx-auto bg-white p-6 md:p-12 rounded-2xl shadow-xl enrollment-form">
+            <h2 class="text-2xl md:text-3xl font-bold text-center mb-2">Ready to Enroll?</h2>
+            <p class="text-center text-gray-600 mb-6 md:mb-8 text-sm md:text-base">
+                Fill out the form below and get your **Entry Ticket instantly!**
+            </p>
 
-                    <form id="enrollment-form" onsubmit="handleFormSubmit(event)">
-                        <div class="mb-4 md:mb-6">
-                            <label for="name" class="block text-sm font-semibold text-gray-700 mb-2">Full Name</label>
-                            <input type="text" id="name" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all duration-200 text-sm md:text-base" required>
-                        </div>
-                        <div class="mb-4 md:mb-6">
-                            <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">Email Address</label>
-                            <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all duration-200 text-sm md:text-base" required>
-                        </div>
-                        <div class="mb-4 md:mb-6">
-                            <label for="phone" class="block text-sm font-semibold text-gray-700 mb-2">Phone Number</label>
-                            <input type="tel" id="phone" name="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all duration-200 text-sm md:text-base" required>
-                        </div>
-                        <div class="mb-4 md:mb-6">
-                            <label for="phone" class="block text-sm font-semibold text-gray-700 mb-2">Whatsapp Number</label>
-                            <input type="tel" id="whatsapp" name="whatsapp" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all duration-200 text-sm md:text-base" required>
-                        </div>
-                        <div class="mb-4 md:mb-6">
-                            <label for="name" class="block text-sm font-semibold text-gray-700 mb-2">College Name</label>
-                            <input type="text" id="college" name="college" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all duration-200 text-sm md:text-base" required>
-                        </div>
-                        <div class="mb-4 md:mb-6">
-                            <label for="name" class="block text-sm font-semibold text-gray-700 mb-2">Qualification and Passing Year</label>
-                            <input type="text" id="qualification" name="qualification" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all duration-200 text-sm md:text-base" required>
-                        </div>
-                        <div class="mb-4 md:mb-6">
-                            <label for="message" class="block text-sm font-semibold text-gray-700 mb-2">Your Message (Optional)</label>
-                            <textarea id="message" name="message" rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all duration-200 text-sm md:text-base"></textarea>
-                        </div>
-                        <button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 rounded-lg shadow-lg transition-transform duration-300 transform hover:scale-105 text-sm md:text-base">
-                            Submit Inquiry
-                        </button>
-                    </form>
-                    <div id="status-message" class="mt-4 text-center text-sm font-medium hidden"></div>
+            <form id="enrollment-form">
+                <input type="hidden" id="ticket_id" name="ticket_id">
+                
+                <div class="mb-4 md:mb-6">
+                    <label for="name" class="block text-sm font-semibold text-gray-700 mb-2">Full Name *</label>
+                    <input type="text" id="name" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" required>
+                </div>
+                <div class="mb-4 md:mb-6">
+                    <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">Email Address *</label>
+                    <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" required>
+                </div>
+                <div class="mb-4 md:mb-6">
+                    <label for="phone" class="block text-sm font-semibold text-gray-700 mb-2">Phone Number *</label>
+                    <input type="tel" id="phone" name="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" required>
+                </div>
+                <div class="mb-4 md:mb-6">
+                    <label for="whatsapp" class="block text-sm font-semibold text-gray-700 mb-2">WhatsApp Number *</label>
+                    <input type="tel" id="whatsapp" name="whatsapp" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" required>
+                </div>
+                <div class="mb-4 md:mb-6">
+                    <label for="college" class="block text-sm font-semibold text-gray-700 mb-2">College Name *</label>
+                    <input type="text" id="college" name="college" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" required>
+                </div>
+                <div class="mb-4 md:mb-6">
+                    <label for="qualification" class="block text-sm font-semibold text-gray-700 mb-2">Qualification & Passing Year *</label>
+                    <input type="text" id="qualification" name="qualification" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" required>
+                </div>
+
+                <button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-4 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105 text-lg">
+                    Generate My Entry Ticket 🎟️
+                </button>
+            </form>
+
+            <div id="status-message" class="mt-6 text-center text-sm font-medium"></div>
+        </div>
+    </div>
+</section>
+
+<div id="ticket-container" class="hidden container mx-auto px-4 my-16">
+    <div id="ticket" class="max-w-4xl mx-auto bg-gradient-to-br from-purple-700 to-pink-600 text-white p-6 md:p-12 rounded-3xl shadow-2xl relative overflow-hidden transform transition-transform duration-500 hover:scale-[1.01]">
+        
+        <div class="text-center pb-6 border-b border-white border-opacity-30">
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-widest uppercase mb-1">ENTRY TICKET</h1>
+            <p class="text-base md:text-xl font-light text-yellow-100">1-Day Workshop on Data bricks & Cybersecurity</p>
+        </div>
+
+        <div class="pt-8 md:pt-10 grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            <div>
+                <p class="text-sm font-light uppercase text-yellow-200 mb-1">Attendee</p>
+                <p class="text-2xl md:text-4xl font-bold tracking-tight mb-6" id="ticket-name"></p>
+                
+                <div class="space-y-1 text-sm md:text-base">
+                    <p><strong>College:</strong> <span id="ticket-college"></span></p>
+                    <p><strong>Qualification:</strong> <span id="ticket-qual"></span></p>
                 </div>
             </div>
-        </section>
-    </main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-6 md:py-8">
-        <div class="container mx-auto px-4 text-center">
-            <p class="text-sm md:text-base">&copy; 2025 SS Skill 2 Success. All Rights Reserved.</p>
+            <div class="md:text-right">
+                <p class="text-sm font-light uppercase text-yellow-200 mb-1">Your Unique Access ID</p>
+                <p class="text-3xl md:text-5xl font-extrabold tracking-widest text-white mb-6 bg-purple-900 bg-opacity-30 p-2 rounded-lg" id="ticket-id-display"></p>
+                
+                <div class="space-y-1 text-sm md:text-base">
+                    <p class="font-bold">Date: <span class="font-normal">13 December 2025</span></p>
+                    <p class="font-bold">Time: <span class="font-normal">10:00 AM – 1:00 PM</span></p>
+                    <p class="font-bold">Venue: <span class="font-normal">[Your Venue Name]</span></p>
+                </div>
+            </div>
         </div>
-    </footer>
+        
+        <div class="dashed-divider"></div>
 
-    <script>
-        // Your existing JavaScript remains the same
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwU02I3WyUF_fiuc4MRuD_YFtllzzN4Eh9xLJXELbS7pq17VeNBVe1csXX0criokN2L/exec";
+        <div class="mt-4 text-center">
+            <p class="text-lg italic font-light">Thank you for enrolling! Get ready to learn how real-world data brickses happen and how to stop them.</p>
+            <p class="mt-4 text-3xl font-extrabold">See you there! 🚀</p>
+        </div>
 
-        function handleFormSubmit(event) {
-            event.preventDefault();
-            const form = event.target;
-            const formData = new FormData(form);
+        <div class="mt-8 text-center">
+            <button onclick="downloadTicket()" class="bg-white text-purple-700 font-bold py-3 px-8 rounded-full hover:bg-gray-100 transition shadow-lg">
+                📥 Download Ticket as PDF
+            </button>
+        </div>
+    </div>
+</div>
+    </main>
 
-            const params = new URLSearchParams();
-            for (const pair of formData.entries()) {
-                params.append(pair[0], pair[1]);
-            }
+        <footer class="bg-gray-800 text-white py-6 md:py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-sm md:text-base">&copy; 2025 SS Skill 2 Success. All Rights Reserved.</p>
+        </div>
+    </footer>
 
-            fetch(SCRIPT_URL, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
-                },
-                body: params.toString()
-            })
-            .then(async res => {
-                const json = await res.json().catch(() => null);
-                if (res.ok && json && json.status === "success") {
-                    const statusMessage = document.getElementById('status-message');
-                    statusMessage.textContent = "✅ Thank you! Your inquiry has been recorded.";
-                    statusMessage.classList.remove('hidden', 'text-red-500');
-                    statusMessage.classList.add('text-green-500');
-                    form.reset();
-                } else {
-                    throw new Error(json && json.message ? json.message : 'Server error');
-                }
-            })
-            .catch(err => {
-                console.error("Submission error:", err);
-                const statusMessage = document.getElementById('status-message');
-                statusMessage.textContent = "❌ Something went wrong. Please try again.";
-                statusMessage.classList.remove('hidden', 'text-green-500');
-                statusMessage.classList.add('text-red-500');
-            });
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script>
+    // Function to generate a simple unique ID (e.g., WORKSHOP-A1B2C3D4)
+    function generateTicketId() {
+        // Generate a random string of 8 alphanumeric characters
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        let result = '';
+        for (let i = 0; i < 8; i++) {
+            result += characters.charAt(Math.floor(Math.random() * characters.length));
         }
+        return 'WKB-' + result;
+    }
 
-        function toggleAccordion(id) {
-            const content = document.getElementById(id);
-            const icon = document.getElementById(id.replace('-syllabus', '-icon'));
-            const isOpen = content.classList.contains('open');
+    // 1. Google Sheets Script URL (kept from your previous code)
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwU02I3WyUF_fiuc4MRuD_YFtllzzN4Eh9xLJXELbS7pq17VeNBVe1csXX0criokN2L/exec";
 
-            if (isOpen) {
-                content.classList.remove('open');
-                icon.classList.remove('rotate-icon');
+    // 2. Combined Form Submission and Ticket Generation
+    document.getElementById('enrollment-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        const form = event.target;
+        const formData = new FormData(form);
+        const statusMessage = document.getElementById('status-message');
+        
+        // --- Generate Unique ID and inject into form data and hidden input ---
+        const uniqueId = generateTicketId();
+        formData.set('ticket_id', uniqueId);
+        document.getElementById('ticket_id').value = uniqueId; // Update hidden field for redundancy
+
+        // Disable button and show loading state
+        const submitButton = form.querySelector('button[type="submit"]');
+        submitButton.disabled = true;
+        submitButton.textContent = "Processing...";
+        statusMessage.textContent = "Submitting data to server...";
+        statusMessage.classList.remove('hidden', 'text-green-500', 'text-red-500');
+        statusMessage.classList.add('text-purple-600');
+
+        // Convert FormData to URLSearchParams (now includes ticket_id)
+        const params = new URLSearchParams();
+        for (const pair of formData.entries()) {
+            params.append(pair[0], pair[1]);
+        }
+        
+        // --- 1. Submit Data to Google Sheet (including the new ticket_id) ---
+        fetch(SCRIPT_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+            },
+            body: params.toString()
+        })
+        .then(async res => {
+            const json = await res.json().catch(() => null);
+            if (res.ok && json && json.status === "success") {
+                // --- 2. On Successful Submission, Generate and Display Ticket ---
+                
+                // Get form values for the ticket
+                const name = formData.get('name').trim();
+                const college = formData.get('college').trim();
+                const qualification = formData.get('qualification').trim();
+
+                // Fill ticket elements
+                document.getElementById('ticket-name').textContent = name;
+                document.getElementById('ticket-college').textContent = college;
+                document.getElementById('ticket-qual').textContent = qualification;
+                document.getElementById('ticket-id-display').textContent = uniqueId; // Display the ID on the ticket
+
+                // Display success message and show the ticket
+                statusMessage.textContent = "✅ Enrollment Successful! Ticket Generated below. Scroll down!";
+                statusMessage.classList.remove('text-purple-600');
+                statusMessage.classList.add('text-green-600');
+                
+                document.getElementById('ticket-container').classList.remove('hidden');
+                
+                // Scroll to ticket
+                document.getElementById('ticket-container').scrollIntoView({ behavior: 'smooth' });
+                
             } else {
-                content.classList.add('open');
-                icon.classList.add('rotate-icon');
+                throw new Error(json && json.message ? json.message : 'Server error: Submission Failed');
             }
+        })
+        .catch(err => {
+            console.error("Submission error:", err);
+            statusMessage.textContent = "❌ An error occurred during enrollment. Please check your connection and try again.";
+            statusMessage.classList.remove('text-purple-600', 'text-green-600');
+            statusMessage.classList.add('text-red-500');
+        })
+        .finally(() => {
+            // Re-enable the button regardless of success/failure
+            submitButton.disabled = false;
+            submitButton.textContent = "Generate My Entry Ticket 🎟️";
+        });
+    });
+
+    // 3. Download Ticket Function (remains the same)
+    function downloadTicket() {
+        const ticket = document.getElementById('ticket');
+        // Ensure jspdf is loaded from the CDN before trying to use it
+        if (!window.jspdf || !window.jspdf.jsPDF) {
+            alert("PDF generation library not loaded. Please try again.");
+            return;
         }
-    </script>
+        const { jsPDF } = window.jspdf;
+
+        html2canvas(ticket, { scale: 2 }).then(canvas => {
+            const imgData = canvas.toDataURL('image/png');
+            const pdf = new jsPDF('l', 'mm', 'a4');
+            const width = pdf.internal.pageSize.getWidth();
+            const height = (canvas.height * width) / canvas.width;
+
+            pdf.addImage(imgData, 'PNG', 10, 10, width - 20, height - 20);
+            pdf.save('Data_bricks_Workshop_Ticket_' + document.getElementById('ticket-name').textContent.replace(/\s+/g, '_') + '.pdf');
+        });
+    }
+
+    // 4. Accordion Toggle (remains the same)
+    function toggleAccordion(id) {
+        const content = document.getElementById(id);
+        const icon = document.getElementById(id.replace('-syllabus', '-icon'));
+        const isOpen = content.classList.contains('open');
+
+        if (isOpen) {
+            content.classList.remove('open');
+            icon.classList.remove('rotate-icon');
+        } else {
+            content.classList.add('open');
+            icon.classList.add('rotate-icon');
+        }
+    }
+   
+</script>  
 </body>
+</html>   
