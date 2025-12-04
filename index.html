@@ -282,6 +282,18 @@
             .testimonial-card {
                 width: 280px;
             }
+
+            .ticket-logo-container {
+            width: 64px; /* Small fixed size for the container */
+            height: 64px;
+            background-color: white; /* White background to make the logo visible */
+            border-radius: 50%; /* Makes it a circle */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 5px; /* Padding inside the circle */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+          }
         }
     </style>
 </head>
@@ -334,7 +346,7 @@
                 </p>
 
                 <a href="#enroll" class="pulse scroll-smooth inline-block bg-yellow-300 hover:bg-yellow-400 text-purple-900 font-bold py-3 px-8 md:py-4 md:px-10 rounded-full text-base md:text-lg shadow-lg transition-transform duration-300 transform hover:scale-110 mobile-btn">
-                    🚀 Start Your Journey Today
+                     Start Your Journey Today
                 </a>
             </div>
         </section>
@@ -915,58 +927,92 @@
                 </div>
             </div>
         </section>
-        <section id="enroll" class="py-16 md:py-20 bg-gray-50">
-    <div class="container mx-auto px-4">
-        <div class="max-w-xl mx-auto bg-white p-6 md:p-12 rounded-2xl shadow-xl enrollment-form">
-            <h2 class="text-2xl md:text-3xl font-bold text-center mb-2">Ready to Enroll?</h2>
-            <p class="text-center text-gray-600 mb-6 md:mb-8 text-sm md:text-base">
-                Fill out the form below and get your **Entry Ticket instantly!**
-            </p>
+<section id="enroll" class="py-16 md:py-20 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <div class="max-w-xl mx-auto bg-white p-8 md:p-14 rounded-xl shadow-2xl border border-gray-100">
+            
+            <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-2 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+                Ready to Enroll?
+            </h2>
+            <p class="text-center text-gray-600 mb-8 md:mb-10 text-base">
+                Secure your seat! Fill out the form and get your <br><strong>Entry Ticket instantly!</strong>
+            </p>
 
-            <form id="enrollment-form">
+            <form id="enrollment-form" class="space-y-6 md:space-y-7">
                 <input type="hidden" id="ticket_id" name="ticket_id">
-                
-                <div class="mb-4 md:mb-6">
-                    <label for="name" class="block text-sm font-semibold text-gray-700 mb-2">Full Name *</label>
-                    <input type="text" id="name" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" required>
-                </div>
-                <div class="mb-4 md:mb-6">
-                    <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">Email Address *</label>
-                    <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" required>
-                </div>
-                <div class="mb-4 md:mb-6">
-                    <label for="phone" class="block text-sm font-semibold text-gray-700 mb-2">Phone Number *</label>
-                    <input type="tel" id="phone" name="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" required>
-                </div>
-                <div class="mb-4 md:mb-6">
-                    <label for="whatsapp" class="block text-sm font-semibold text-gray-700 mb-2">WhatsApp Number *</label>
-                    <input type="tel" id="whatsapp" name="whatsapp" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" required>
-                </div>
-                <div class="mb-4 md:mb-6">
-                    <label for="college" class="block text-sm font-semibold text-gray-700 mb-2">College Name *</label>
-                    <input type="text" id="college" name="college" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" required>
-                </div>
-                <div class="mb-4 md:mb-6">
-                    <label for="qualification" class="block text-sm font-semibold text-gray-700 mb-2">Qualification & Passing Year *</label>
-                    <input type="text" id="qualification" name="qualification" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" required>
-                </div>
+                
+                <div>
+                    <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Full Name <span class="text-red-500">*</span></label>
+                    <input type="text" id="name" name="name" 
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 
+                                  focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition duration-200" 
+                           required>
+                </div>
 
-                <button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-4 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105 text-lg">
-                    Generate My Entry Ticket 🎟️
-                </button>
-            </form>
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address <span class="text-red-500">*</span></label>
+                    <input type="email" id="email" name="email" 
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 
+                                  focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition duration-200" 
+                           required>
+                </div>
 
-            <div id="status-message" class="mt-6 text-center text-sm font-medium"></div>
-        </div>
-    </div>
+                <div>
+                    <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Phone Number <span class="text-red-500">*</span></label>
+                    <input type="tel" id="phone" name="phone" 
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 
+                                  focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition duration-200" 
+                           required>
+                </div>
+
+                <div>
+                    <label for="whatsapp" class="block text-sm font-medium text-gray-700 mb-2">WhatsApp Number <span class="text-red-500">*</span></label>
+                    <input type="tel" id="whatsapp" name="whatsapp" 
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 
+                                  focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition duration-200" 
+                           required>
+                </div>
+
+                <div>
+                    <label for="college" class="block text-sm font-medium text-gray-700 mb-2">College Name <span class="text-red-500">*</span></label>
+                    <input type="text" id="college" name="college" 
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 
+                                  focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition duration-200" 
+                           required>
+                </div>
+
+                <div>
+                    <label for="qualification" class="block text-sm font-medium text-gray-700 mb-2">Qualification & Passing Year <span class="text-red-500">*</span></label>
+                    <input type="text" id="qualification" name="qualification" 
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 
+                                  focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition duration-200" 
+                           required>
+                </div>
+
+                <button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-4 rounded-lg shadow-xl transition-all duration-300 transform hover:scale-[1.01] text-lg mt-8">
+                    Generate My Entry Ticket 🎟️
+                </button>
+            </form>
+
+            <div id="status-message" class="mt-6 text-center text-sm font-medium"></div>
+        </div>
+    </div>
 </section>
 
 <div id="ticket-container" class="hidden container mx-auto px-4 my-16">
     <div id="ticket" class="max-w-4xl mx-auto bg-gradient-to-br from-purple-700 to-pink-600 text-white p-6 md:p-12 rounded-3xl shadow-2xl relative overflow-hidden transform transition-transform duration-500 hover:scale-[1.01]">
         
-        <div class="text-center pb-6 border-b border-white border-opacity-30">
-            <h1 class="text-4xl md:text-5xl font-extrabold tracking-widest uppercase mb-1">ENTRY TICKET</h1>
-            <p class="text-base md:text-xl font-light text-yellow-100">1-Day Workshop on Data bricks & Cybersecurity</p>
+        <div class="flex flex-col sm:flex-row justify-between items-center pb-6 border-b border-white border-opacity-30">
+            <div class="mb-4 sm:mb-0">
+                <div class="ticket-logo-container">
+                    <img src="SSInfotech white bg.jpg" alt="SS Infotech Logo" class="h-8 md:h-10 w-auto object-contain">
+                </div>
+            </div>
+
+            <div class="text-center sm:text-right">
+                <h1 class="text-4xl md:text-5xl font-extrabold tracking-widest uppercase mb-1">ENTRY TICKET</h1>
+                <p class="text-base md:text-xl font-light text-yellow-100">1-Day Workshop on Data bricks </p>
+            </div>
         </div>
 
         <div class="pt-8 md:pt-10 grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -987,8 +1033,8 @@
                 
                 <div class="space-y-1 text-sm md:text-base">
                     <p class="font-bold">Date: <span class="font-normal">13 December 2025</span></p>
-                    <p class="font-bold">Time: <span class="font-normal">10:00 AM – 1:00 PM</span></p>
-                    <p class="font-bold">Venue: <span class="font-normal">[Your Venue Name]</span></p>
+                    <p class="font-bold">Time: <span class="font-normal">2:00 PM – 5:00 PM</span></p>
+                    <p class="font-bold">Venue: <span class="font-normal">Vidarbh Hindi Sahitya Sammelan, jhansi Rani square, N Ambazari Rd, Sadar Bazar, Sitabuldi, Nagpur, Maharashtra 440001</span></p>
                 </div>
             </div>
         </div>
