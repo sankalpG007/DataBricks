@@ -989,9 +989,14 @@
                            required>
                 </div>
 
-                <button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-4 rounded-lg shadow-xl transition-all duration-300 transform hover:scale-[1.01] text-lg mt-8">
-                    Generate My Entry Ticket 🎟️
-                </button>
+            <button 
+  id="submit-btn"
+  type="submit" 
+  class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-4 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105 text-lg">
+  Generate My Entry Ticket 🎟️
+</button>
+
+
             </form>
 
             <div id="status-message" class="mt-6 text-center text-sm font-medium"></div>
@@ -1080,103 +1085,116 @@
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwU02I3WyUF_fiuc4MRuD_YFtllzzN4Eh9xLJXELbS7pq17VeNBVe1csXX0criokN2L/exec";
 
     // 2. Combined Form Submission and Ticket Generation
-    document.getElementById('enrollment-form').addEventListener('submit', function(event) {
-        event.preventDefault();
-        
-        const form = event.target;
-        const formData = new FormData(form);
-        const statusMessage = document.getElementById('status-message');
-        
-        // --- Generate Unique ID and inject into form data and hidden input ---
-        const uniqueId = generateTicketId();
-        formData.set('ticket_id', uniqueId);
-        document.getElementById('ticket_id').value = uniqueId; // Update hidden field for redundancy
+      let isSubmitting = false; // ✅ GLOBAL LOCK
 
-        // Disable button and show loading state
-        const submitButton = form.querySelector('button[type="submit"]');
-        submitButton.disabled = true;
-        submitButton.textContent = "Processing...";
-        statusMessage.textContent = "Submitting data to server...";
-        statusMessage.classList.remove('hidden', 'text-green-500', 'text-red-500');
-        statusMessage.classList.add('text-purple-600');
+document.getElementById('enrollment-form').addEventListener('submit', function(e) {
+    e.preventDefault();
 
-        // Convert FormData to URLSearchParams (now includes ticket_id)
-        const params = new URLSearchParams();
-        for (const pair of formData.entries()) {
-            params.append(pair[0], pair[1]);
+    if (isSubmitting) return;  // ✅ HARD STOP MULTI CLICKS
+    isSubmitting = true;
+
+    const btn = document.getElementById('submit-btn');
+    const statusMessage = document.getElementById('status-message');
+
+    btn.disabled = true;
+    btn.innerHTML = "⏳ Generating Your Ticket...";
+    btn.classList.add("opacity-60", "cursor-not-allowed");
+
+    const name = document.getElementById('name').value.trim();
+    const college = document.getElementById('college').value.trim();
+    const qualification = document.getElementById('qualification').value.trim();
+
+    const ticketId = generateTicketId(); // ✅ UNIQUE ID
+    document.getElementById('ticket-id-display').textContent = ticketId;
+    document.getElementById('ticket_id').value = ticketId;
+
+    const formData = new FormData(e.target);
+    const params = new URLSearchParams(formData);
+
+    fetch(SCRIPT_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+        body: params.toString()
+    })
+    .then(async res => {
+        const json = await res.json().catch(() => null);
+
+        if (res.ok && json && json.status === "success") {
+
+            document.getElementById('ticket-name').textContent = name;
+            document.getElementById('ticket-college').textContent = college;
+            document.getElementById('ticket-qual').textContent = qualification;
+
+            document.getElementById('ticket-container').classList.remove('hidden');
+            statusMessage.innerHTML = `<p class="text-green-600">✅ Ticket Generated Successfully!</p>`;
+            document.getElementById('ticket-container').scrollIntoView({ behavior: 'smooth' });
+
+        } else if (json && json.status === "duplicate") {
+            statusMessage.innerHTML = `<p class="text-yellow-600">⚠️ You have already generated a ticket.</p>`;
+        } else {
+            throw new Error("Server Error");
         }
-        
-        // --- 1. Submit Data to Google Sheet (including the new ticket_id) ---
-        fetch(SCRIPT_URL, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
-            },
-            body: params.toString()
-        })
-        .then(async res => {
-            const json = await res.json().catch(() => null);
-            if (res.ok && json && json.status === "success") {
-                // --- 2. On Successful Submission, Generate and Display Ticket ---
-                
-                // Get form values for the ticket
-                const name = formData.get('name').trim();
-                const college = formData.get('college').trim();
-                const qualification = formData.get('qualification').trim();
 
-                // Fill ticket elements
-                document.getElementById('ticket-name').textContent = name;
-                document.getElementById('ticket-college').textContent = college;
-                document.getElementById('ticket-qual').textContent = qualification;
-                document.getElementById('ticket-id-display').textContent = uniqueId; // Display the ID on the ticket
-
-                // Display success message and show the ticket
-                statusMessage.textContent = "✅ Enrollment Successful! Ticket Generated below. Scroll down!";
-                statusMessage.classList.remove('text-purple-600');
-                statusMessage.classList.add('text-green-600');
-                
-                document.getElementById('ticket-container').classList.remove('hidden');
-                
-                // Scroll to ticket
-                document.getElementById('ticket-container').scrollIntoView({ behavior: 'smooth' });
-                
-            } else {
-                throw new Error(json && json.message ? json.message : 'Server error: Submission Failed');
-            }
-        })
-        .catch(err => {
-            console.error("Submission error:", err);
-            statusMessage.textContent = "❌ An error occurred during enrollment. Please check your connection and try again.";
-            statusMessage.classList.remove('text-purple-600', 'text-green-600');
-            statusMessage.classList.add('text-red-500');
-        })
-        .finally(() => {
-            // Re-enable the button regardless of success/failure
-            submitButton.disabled = false;
-            submitButton.textContent = "Generate My Entry Ticket 🎟️";
-        });
+    })
+    .catch(err => {
+        console.error("Submission error:", err);
+        statusMessage.innerHTML = `<p class="text-red-600">❌ Server Error. Try again.</p>`;
+    })
+    .finally(() => {
+        isSubmitting = false; // ✅ RELEASE LOCK
+        btn.disabled = false;
+        btn.innerHTML = "Generate My Entry Ticket 🎟️";
+        btn.classList.remove("opacity-60", "cursor-not-allowed");
     });
+});
+
+
 
     // 3. Download Ticket Function (remains the same)
     function downloadTicket() {
-        const ticket = document.getElementById('ticket');
-        // Ensure jspdf is loaded from the CDN before trying to use it
-        if (!window.jspdf || !window.jspdf.jsPDF) {
-            alert("PDF generation library not loaded. Please try again.");
-            return;
-        }
-        const { jsPDF } = window.jspdf;
-
-        html2canvas(ticket, { scale: 2 }).then(canvas => {
-            const imgData = canvas.toDataURL('image/png');
-            const pdf = new jsPDF('l', 'mm', 'a4');
-            const width = pdf.internal.pageSize.getWidth();
-            const height = (canvas.height * width) / canvas.width;
-
-            pdf.addImage(imgData, 'PNG', 10, 10, width - 20, height - 20);
-            pdf.save('Data_bricks_Workshop_Ticket_' + document.getElementById('ticket-name').textContent.replace(/\s+/g, '_') + '.pdf');
-        });
+    const ticket = document.getElementById('ticket');
+    // Check for library loading
+    if (!window.jspdf || !window.jspdf.jsPDF || !window.html2canvas) {
+        // Since alert() is forbidden, logging to console and returning
+        console.error("PDF generation libraries not loaded.");
+        return;
     }
+    const { jsPDF } = window.jspdf;
+
+    // Use html2canvas to capture the HTML element
+    html2canvas(ticket, { scale: 3 }).then(canvas => { // Increased scale for higher resolution
+        const imgData = canvas.toDataURL('image/png');
+        
+        // Define page orientation and default dimensions (A4 in mm)
+        const pdf = new jsPDF('l', 'mm', 'a4');
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = pdf.internal.pageSize.getHeight();
+
+        // Calculate the ratio of the canvas image width to the PDF width
+        const imgWidth = canvas.width;
+        const imgHeight = canvas.height;
+        const ratio = pdfWidth / imgWidth;
+        
+        // Calculate the height the image should take up in the PDF (in mm)
+        let newHeight = imgHeight * ratio;
+
+        // If the calculated height exceeds the default A4 height, we need to adjust the PDF object itself
+        if (newHeight > pdfHeight) {
+            // Recalculate PDF height based on content to ensure the whole ticket fits
+            pdf.internal.pageSize.height = newHeight + 20; // Add 20mm for padding
+            newHeight = pdf.internal.pageSize.height - 20; // Recalculate content height after padding
+        }
+        
+        // Add the image to the PDF (10mm margin on x and y)
+        pdf.addImage(imgData, 'PNG', 10, 10, pdfWidth - 20, newHeight);
+
+        // Save the PDF
+        const name = document.getElementById('ticket-name').textContent.replace(/\s+/g, '_');
+        pdf.save('Data_Bricks_Workshop_Ticket_' + name + '.pdf');
+    }).catch(error => {
+        console.error("Error during PDF generation:", error);
+    });
+}
 
     // 4. Accordion Toggle (remains the same)
     function toggleAccordion(id) {
