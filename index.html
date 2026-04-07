@@ -335,6 +335,121 @@
     font-weight: 600;
     letter-spacing: 0.05em;
 }
+
+/* New styles for the redesigned enrollment section */
+@keyframes gradient-rotate {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.gradient-border-wrapper {
+    position: relative;
+    padding: 2px; /* Border thickness */
+    border-radius: 1.5rem; /* Matches container rounding */
+    background: linear-gradient(-45deg, #ec4899, #8b5cf6, #22d3ee, #f59e0b);
+    background-size: 400% 400%;
+    animation: gradient-rotate 8s ease infinite;
+    box-shadow: 0 25px 50px -12px rgba(139, 92, 246, 0.25);
+}
+
+.glass-form-container {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Floating Label Logic */
+.floating-label-group {
+    position: relative;
+}
+
+.floating-input {
+    font-size: 1rem;
+    padding: 1.5rem 1rem 0.5rem 1rem;
+    display: block;
+    width: 100%;
+    border-radius: 0.75rem;
+    border: 1px solid #d1d5db; /* gray-300 */
+    background: transparent;
+    transition: all 0.2s ease;
+}
+
+.floating-input:focus {
+    outline: none;
+    border-color: #8b5cf6; /* purple-500 */
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+}
+
+.floating-label {
+    color: #6b7280; /* gray-500 */
+    font-size: 1rem;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 1rem;
+    top: 1rem;
+    transition: all 0.2s ease;
+}
+
+.required-dot {
+    color: #ef4444; /* red-500 */
+    margin-left: 2px;
+}
+
+/* State when focused or input has content */
+.floating-input:focus ~ .floating-label,
+.floating-input:not(:placeholder-shown) ~ .floating-label {
+    top: 0.25rem;
+    font-size: 0.75rem;
+    color: #8b5cf6; /* purple-500 */
+    font-weight: 600;
+}
+/* Premium Ticket Design Updates */
+.ticket-main-gradient {
+    /* Deep professional red/purple from flyer */
+    background: linear-gradient(135deg, #1a0633 0%, #7e1d42 50%, #d4145a 100%);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.ticket-inner-card {
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+}
+
+.ticket-id-box {
+    background: #ffffff;
+    color: #d4145a; 
+    border-radius: 12px;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 70px; /* Ensures consistent box height */
+    padding: 0 10px;
+}
+
+.ticket-logo-white {
+    background: white;
+    padding: 8px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: auto;
+    min-width: 100px;
+}
+
+.data-label-gold {
+    color: #fbbf24; /* Amber-400 for an official look */
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -967,106 +1082,81 @@
                 </div>
             </div>
         </section>
-<section id="enroll" class="py-16 md:py-20 bg-gray-50">
-    <div class="container mx-auto px-4">
-        <div class="max-w-xl mx-auto bg-white p-8 md:p-14 rounded-xl shadow-2xl border border-gray-100">
-            
-            <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-2 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-                Ready to Enroll?
-            </h2>
-            <p class="text-center text-gray-600 mb-8 md:mb-10 text-base">
-                Secure your seat! Fill out the form and get your <br><strong>Entry Ticket instantly!</strong>
-            </p>
 
-            <form id="enrollment-form" class="space-y-6 md:space-y-7">
-                <input type="hidden" id="ticket_id" name="ticket_id">
+      <section id="enroll" class="py-20 md:py-28 bg-gray-50 relative overflow-hidden">
+    <div class="absolute -top-32 -left-32 w-96 h-96 bg-purple-100 rounded-full opacity-50 blur-3xl"></div>
+    <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-cyan-100 rounded-full opacity-50 blur-3xl"></div>
+
+    <div class="container mx-auto px-4 relative z-10">
+        <div class="max-w-2xl mx-auto gradient-border-wrapper">
+            <div class="glass-form-container p-8 md:p-14 rounded-[1.4rem]">
                 
-                <div>
-                    <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Full Name <span class="text-red-500">*</span></label>
-                    <input type="text" id="name" name="name" 
-                           class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 
-                                  focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition duration-200" 
-                           required>
+                <div class="text-center mb-10">
+                    <h2 class="text-4xl md:text-5xl font-extrabold mb-3 tracking-tighter bg-gradient-to-r from-purple-700 to-cyan-500 bg-clip-text text-transparent">
+                        Reserve Your Seat
+                    </h2>
+                    <p class="text-center text-gray-600 max-w-sm mx-auto text-base">
+                        Complete the registration form to obtain your <span class="font-bold text-purple-700">instant digital entry ticket</span>.
+                    </p>
                 </div>
 
-                <div>
-                    <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address <span class="text-red-500">*</span></label>
-                    <input type="email" id="email" name="email" 
-                           class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 
-                                  focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition duration-200" 
-                           required>
-                </div>
+                <form id="enrollment-form" class="space-y-5">
+                    <input type="hidden" id="ticket_id" name="ticket_id">
+                    
+                    <div class="floating-label-group">
+                        <input type="text" id="name" name="name" class="floating-input" placeholder=" " required>
+                        <label for="name" class="floating-label">Full Name<span class="required-dot">*</span></label>
+                    </div>
 
-                <div>
-                    <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Phone Number <span class="text-red-500">*</span></label>
-                    <input type="tel" id="phone" name="phone" 
-                           class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 
-                                  focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition duration-200" 
-                           required>
-                </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div class="floating-label-group">
+                            <input type="email" id="email" name="email" class="floating-input" placeholder=" " required>
+                            <label for="email" class="floating-label">Email Address<span class="required-dot">*</span></label>
+                        </div>
 
-                <div>
-                    <label for="whatsapp" class="block text-sm font-medium text-gray-700 mb-2">WhatsApp Number <span class="text-red-500">*</span></label>
-                    <input type="tel" id="whatsapp" name="whatsapp" 
-                           class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 
-                                  focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition duration-200" 
-                           required>
-                </div>
+                        <div class="floating-label-group">
+                            <input type="tel" id="phone" name="phone" class="floating-input" placeholder=" " required>
+                            <label for="phone" class="floating-label">Phone Number<span class="required-dot">*</span></label>
+                        </div>
+                    </div>
 
-                <div>
-                    <label for="college" class="block text-sm font-medium text-gray-700 mb-2">College Name <span class="text-red-500">*</span></label>
-                    <input type="text" id="college" name="college" 
-                           class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 
-                                  focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition duration-200" 
-                           required>
-                </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div class="floating-label-group">
+                            <input type="tel" id="whatsapp" name="whatsapp" class="floating-input" placeholder=" " required>
+                            <label for="whatsapp" class="floating-label">WhatsApp Number<span class="required-dot">*</span></label>
+                        </div>
 
-                <div>
-                    <label for="qualification" class="block text-sm font-medium text-gray-700 mb-2">Qualification & Passing Year <span class="text-red-500">*</span></label>
-                    <input type="text" id="qualification" name="qualification" 
-                           class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 
-                                  focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition duration-200" 
-                           required>
-                </div>
+                        <div class="floating-label-group">
+                            <input type="text" id="college" name="college" class="floating-input" placeholder=" " required>
+                            <label for="college" class="floating-label">College Name<span class="required-dot">*</span></label>
+                        </div>
+                    </div>
 
-            <button 
-  id="submit-btn"
-  type="submit" 
-  class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-4 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105 text-lg">
-  Generate My Entry Ticket 🎟️
-</button>
+                    <div class="floating-label-group">
+                        <input type="text" id="qualification" name="qualification" class="floating-input" placeholder=" " required>
+                        <label for="qualification" class="floating-label">Qualification & Passing Year<span class="required-dot">*</span></label>
+                    </div>
 
+                    <div class="pt-6">
+                        <button 
+                            id="submit-btn"
+                            type="submit" 
+                            class="w-full h-16 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-extrabold rounded-xl shadow-lg shadow-purple-200 transition-all duration-300 transform hover:scale-[1.03] active:scale-[0.98] text-xl flex items-center justify-center gap-3">
+                            Claim My Entry Ticket <span class="text-2xl">🎟️</span>
+                        </button>
+                    </div>
+                </form>
 
-            </form>
-
-            <div id="status-message" class="mt-6 text-center text-sm font-medium"></div>
+                <div id="status-message" class="mt-6 text-center text-sm font-medium h-6"></div>
+            </div>
         </div>
     </div>
 </section>
 
       <!-- Redesigned High-Visibility Ticket -->
-<div id="ticket-container" class="hidden container mx-auto px-4 my-16">
+<div id="ticket-container" class="hidden container mx-auto px-4 my-16 relative z-10">
     <div id="ticket" class="max-w-4xl mx-auto ticket-main-gradient text-white p-6 md:p-12 rounded-3xl shadow-2xl relative overflow-hidden">
         
-        <!-- TOP: LOGOS & TITLE -->
-        <div class="relative z-10 flex flex-col md:flex-row justify-between items-center gap-6 pb-8 border-b border-white/20">
-            <div class="flex items-center gap-4">
-                <div class="ticket-logo-white shadow-lg">
-                    <img src="S2S.png" alt="S2S Logo" class="h-10 w-auto object-contain">
-                </div>
-                <div class="h-10 w-[1px] bg-white/30 hidden md:block"></div>
-                <div class="ticket-logo-white shadow-lg">
-                    <img src="SS Infotech.png" alt="SS Infotech Logo" class="h-10 w-auto object-contain">
-                </div>
-            </div>
-
-            <div class="text-center md:text-right">
-                <h1 class="text-4xl md:text-5xl font-b
-      <!-- Redesigned High-Visibility Ticket -->
-<div id="ticket-container" class="hidden container mx-auto px-4 my-16">
-    <div id="ticket" class="max-w-4xl mx-auto ticket-main-gradient text-white p-6 md:p-12 rounded-3xl shadow-2xl relative overflow-hidden">
-        
-        <!-- TOP: LOGOS & TITLE -->
         <div class="relative z-10 flex flex-col md:flex-row justify-between items-center gap-6 pb-8 border-b border-white/20">
             <div class="flex items-center gap-4">
                 <div class="ticket-logo-white shadow-lg">
@@ -1084,10 +1174,8 @@
             </div>
         </div>
 
-        <!-- MIDDLE: INFO GRID -->
         <div class="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-6 mt-10">
             
-            <!-- Attendee Column -->
             <div class="lg:col-span-2 ticket-inner-card p-6 flex flex-col justify-center">
                 <p class="data-label-gold">Official Delegate</p>
                 <p class="text-3xl md:text-5xl font-bold mb-4 tracking-tight" id="ticket-name"></p>
@@ -1104,29 +1192,28 @@
                 </div>
             </div>
 
-            <!-- Access ID Column -->
             <div class="ticket-inner-card p-6 text-center flex flex-col justify-center border-l-4 border-yellow-400">
                 <p class="data-label-gold mb-2">Unique Access ID</p>
-                <div class="ticket-id-box py-4 px-2">
-                    <p class="text-3xl md:text-4xl font-black tracking-widest" id="ticket-id-display"></p>
-                </div>
+               <div class="ticket-id-box">
+    <!-- Reduced font size and tracking to ensure it fits inside the box -->
+    <p class="text-2xl md:text-3xl font-black tracking-normal break-all leading-none" id="ticket-id-display"></p>
+</div>
                 <p class="text-[10px] mt-3 opacity-70">VALID FOR ONE ENTRY ONLY</p>
             </div>
         </div>
 
-        <!-- BOTTOM: LOGISTICS -->
         <div class="relative z-10 mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
             <div class="ticket-inner-card p-4 text-center">
                 <p class="data-label-gold">Event Date</p>
-                <p class="font-bold text-xl">20 April 2026</p>
+                <p class="font-bold text-xl text-white">20 April 2026</p>
             </div>
             <div class="ticket-inner-card p-4 text-center">
                 <p class="data-label-gold">Session Time</p>
-                <p class="font-bold text-xl">2:00 PM – 5:00 PM</p>
+                <p class="font-bold text-xl text-white">2:00 PM – 5:00 PM</p>
             </div>
             <div class="ticket-inner-card p-4 text-center">
                 <p class="data-label-gold">Venue</p>
-                <p class="font-bold text-base leading-tight">Online (MS Teams)</p>
+                <p class="font-bold text-base leading-tight text-white">Online (MS Teams)</p>
             </div>
         </div>
 
@@ -1134,10 +1221,10 @@
             <p class="text-sm md:text-base text-purple-100 italic mb-8">Please present this ticket digitally or in print at the start of the session for verification.</p>
             
             <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <button onclick="downloadTicket()" class="bg-white text-red-600 font-extrabold py-4 px-10 rounded-full hover:bg-gray-100 transition shadow-xl transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2">
+                <button onclick="downloadTicket()" class="bg-white text-red-600 font-extrabold py-4 px-10 rounded-full hover:bg-gray-100 transition shadow-xl transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2 w-full sm:w-auto">
                     <i class="fas fa-file-pdf"></i> DOWNLOAD TICKET
                 </button>
-                <a id="calendar-link" target="_blank" class="bg-yellow-400 text-red-900 font-extrabold py-4 px-10 rounded-full hover:bg-yellow-300 transition shadow-xl transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2">
+                <a id="calendar-link" target="_blank" class="bg-yellow-400 text-red-900 font-extrabold py-4 px-10 rounded-full hover:bg-yellow-300 transition shadow-xl transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2 w-full sm:w-auto inline-block">
                     <i class="fas fa-calendar-check"></i> SAVE TO CALENDAR
                 </a>
             </div>
@@ -1149,17 +1236,11 @@
 
         <div class="mt-4 text-center">
             <p class="text-lg italic font-light">Thank you for enrolling! Get ready to learn how real-world data brickses happen and how to stop them.</p>
-            <p class="mt-4 text-3xl font-extrabold">See you there! 🚀</p>
+            <p class="mt-4 text-3xl font-extrabold">See you there!</p>
         </div>
 
         <div class="mt-8 text-center flex flex-col sm:flex-row justify-center gap-4">
-    <button onclick="downloadTicket()" class="bg-white text-purple-700 font-bold py-3 px-8 rounded-full hover:bg-gray-100 transition shadow-lg">
-        📥 Download Ticket as PDF
-    </button>
-    
-    <a id="calendar-link" target="_blank" class="bg-yellow-400 text-purple-900 font-bold py-3 px-8 rounded-full hover:bg-yellow-300 transition shadow-lg inline-block">
-        📅 Add to Google Calendar
-    </a>
+   
 </div>
     </div>
 </div>
@@ -1230,9 +1311,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <script>
-    // Function to generate a simple unique ID (e.g., WORKSHOP-A1B2C3D4)
+    // 1. Unique ID Generator
     function generateTicketId() {
-        // Generate a random string of 8 alphanumeric characters
         const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
         let result = '';
         for (let i = 0; i < 8; i++) {
@@ -1241,115 +1321,112 @@
         return 'WKB-' + result;
     }
 
-    // 1. Google Sheets Script URL (kept from your previous code)
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwU02I3WyUF_fiuc4MRuD_YFtllzzN4Eh9xLJXELbS7pq17VeNBVe1csXX0criokN2L/exec";
+    let isSubmitting = false;
 
-    // 2. Combined Form Submission and Ticket Generation
-      let isSubmitting = false; // ✅ GLOBAL LOCK
-
-document.getElementById('enrollment-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    if (isSubmitting) return;  // ✅ HARD STOP MULTI CLICKS
-    isSubmitting = true;
-
-    const btn = document.getElementById('submit-btn');
-    const statusMessage = document.getElementById('status-message');
-
-    btn.disabled = true;
-    btn.innerHTML = "⏳ Generating Your Ticket...";
-    btn.classList.add("opacity-60", "cursor-not-allowed");
-
-    const name = document.getElementById('name').value.trim();
-    const college = document.getElementById('college').value.trim();
-    const qualification = document.getElementById('qualification').value.trim();
-
-    const ticketId = generateTicketId(); // ✅ UNIQUE ID
-    document.getElementById('ticket-id-display').textContent = ticketId;
-    document.getElementById('ticket_id').value = ticketId;
-
-    const formData = new FormData(e.target);
-    const params = new URLSearchParams(formData);
-
-    fetch(SCRIPT_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
-        body: params.toString()
-    })
-    .then(async res => {
-        const json = await res.json().catch(() => null);
-
-        if (res.ok && json && json.status === "success") {
-
-            document.getElementById('ticket-name').textContent = name;
-            document.getElementById('ticket-college').textContent = college;
-            document.getElementById('ticket-qual').textContent = qualification;
-
-            // --- NEW: GENERATE GOOGLE CALENDAR LINK ---
-    const eventTitle = encodeURIComponent("1-Day Workshop on Data Bricks");
-    const eventDetails = encodeURIComponent("Thank you for registering! Your Ticket ID is: " + ticketId);
-    const eventLocation = encodeURIComponent("Online on Microsoft Teams");
-    // Format: YYYYMMDDTHHMMSSZ (UTC time) or use local time if simplified
-    const startTime = "20260420T140000"; // April 20, 2026, 2:00 PM
-    const endTime = "20260420T170000";   // April 20, 2026, 5:00 PM
+    // Attach listener directly to the form
+    const enrollmentForm = document.getElementById('enrollment-form');
     
-    const calUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${eventTitle}&dates=${startTime}/${endTime}&details=${eventDetails}&location=${eventLocation}&sf=true&output=xml`;
-    
-    document.getElementById('calendar-link').href = calUrl;
-    // ------------------------------------------
+    if (enrollmentForm) {
+        enrollmentForm.addEventListener('submit', function(e) {
+            // STOP the page from reloading/scrolling to top
+            e.preventDefault();
+            e.stopPropagation();
 
-            document.getElementById('ticket-container').classList.remove('hidden');
-            statusMessage.innerHTML = `<p class="text-green-600">✅ Ticket Generated Successfully!</p>`;
-            document.getElementById('ticket-container').scrollIntoView({ behavior: 'smooth' });
+            if (isSubmitting) return; 
+            isSubmitting = true;
 
-        } else if (json && json.status === "duplicate") {
-            statusMessage.innerHTML = `<p class="text-yellow-600">⚠️ You have already generated a ticket.</p>`;
-        } else {
-            throw new Error("Server Error");
-        }
+            const btn = document.getElementById('submit-btn');
+            const statusMessage = document.getElementById('status-message');
 
-    })
-    .catch(err => {
-        console.error("Submission error:", err);
-        statusMessage.innerHTML = `<p class="text-red-600">❌ Server Error. Try again.</p>`;
-    })
-    .finally(() => {
-        isSubmitting = false; // ✅ RELEASE LOCK
-        btn.disabled = false;
-        btn.innerHTML = "Generate My Entry Ticket 🎟️";
-        btn.classList.remove("opacity-60", "cursor-not-allowed");
-    });
-});
+            // UI State: Loading
+            btn.disabled = true;
+            btn.innerHTML = "⏳ Processing Your Seat...";
+            statusMessage.innerHTML = `<p class="text-purple-600 animate-pulse">Submitting to database...</p>`;
 
+            // Capture Values from your new interactive inputs
+            const nameVal = document.getElementById('name').value.trim();
+            const collegeVal = document.getElementById('college').value.trim();
+            const qualVal = document.getElementById('qualification').value.trim();
+            const ticketId = generateTicketId();
 
+            // Prepare Data
+            document.getElementById('ticket_id').value = ticketId;
+            const formData = new FormData(this);
+            const params = new URLSearchParams(formData);
 
-    // 3. Download Ticket Function (remains the same)
+            fetch(SCRIPT_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+                body: params.toString()
+            })
+            .then(async res => {
+                const json = await res.json().catch(() => null);
+
+                if (res.ok && json && json.status === "success") {
+                    // Fill Ticket Data
+                    document.getElementById('ticket-name').textContent = nameVal;
+                    document.getElementById('ticket-college').textContent = collegeVal;
+                    document.getElementById('ticket-qual').textContent = qualVal;
+                    document.getElementById('ticket-id-display').textContent = ticketId;
+
+                    // Generate Google Calendar Link
+                    const eventTitle = encodeURIComponent("Databricks & AI Engineering Seminar");
+                    const eventDetails = encodeURIComponent("Your Unique Access ID: " + ticketId);
+                    const calUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${eventTitle}&dates=20260420T140000/20260420T170000&details=${eventDetails}&sf=true&output=xml`;
+                    document.getElementById('calendar-link').href = calUrl;
+
+                    // Reveal Ticket and scroll to it
+                    const ticketContainer = document.getElementById('ticket-container');
+                    ticketContainer.classList.remove('hidden');
+                    
+                    statusMessage.innerHTML = `<p class="text-green-600 font-bold">✅ Success! Ticket generated below.</p>`;
+                    
+                    // Smooth scroll to the ticket
+                    setTimeout(() => {
+                        ticketContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 100);
+
+                } else if (json && json.status === "duplicate") {
+                    statusMessage.innerHTML = `<p class="text-orange-600 font-bold">⚠️ You are already registered with this email/phone.</p>`;
+                } else {
+                    throw new Error("Server Error");
+                }
+            })
+            .catch(err => {
+                console.error("Submission error:", err);
+                statusMessage.innerHTML = `<p class="text-red-600 font-bold">❌ Error. Please check your connection.</p>`;
+            })
+            .finally(() => {
+                isSubmitting = false;
+                btn.disabled = false;
+                btn.innerHTML = 'Claim My Entry Ticket <span class="text-2xl">🎟️</span>';
+            });
+        });
+    }
+
+    // PDF Download Logic
     function downloadTicket() {
     const ticket = document.getElementById('ticket');
     if (!window.jspdf || !window.jspdf.jsPDF || !window.html2canvas) {
         console.error("Libraries not loaded.");
-    // Check for library loading
-    if (!window.jspdf || !window.jspdf.jsPDF || !window.html2canvas) {
-        // Since alert() is forbidden, logging to console and returning
-        console.error("PDF generation libraries not loaded.");
         return;
     }
     const { jsPDF } = window.jspdf;
 
     // Use a high scale (4) to ensure the dark colors look professional in the PDF
     html2canvas(ticket, { 
-        scale: 4, 
-        useCORS: true, 
-        logging: false,
-        backgroundColor: null 
+        scale: 3, // High resolution
+    useCORS: true, 
+    logging: false,
+    backgroundColor: null,
+    scrollX: 0,
+    scrollY: -window.scrollY, // Fixes potential alignment issues if page is scrolled
+    windowWidth: document.documentElement.offsetWidth,
+    windowHeight: document.documentElement.offsetHeight
     }).then(canvas => {
         const imgData = canvas.toDataURL('image/png');
-    // Use html2canvas to capture the HTML element
-    html2canvas(ticket, { scale: 3 }).then(canvas => { // Increased scale for higher resolution
-        const imgData = canvas.toDataURL('image/png');
-        
-        // Define page orientation and default dimensions (A4 in mm)
-        const pdf = new jsPDF('l', 'mm', 'a4');
+        const pdf = new jsPDF('l', 'mm', 'a4'); // Landscape A4
         const pdfWidth = pdf.internal.pageSize.getWidth();
         const pdfHeight = pdf.internal.pageSize.getHeight();
 
@@ -1364,48 +1441,12 @@ document.getElementById('enrollment-form').addEventListener('submit', function(e
         pdf.addImage(imgData, 'PNG', 10, 10, pdfWidth - 20, newHeight);
         const name = document.getElementById('ticket-name').textContent.replace(/\s+/g, '_');
         pdf.save('Databricks_Seminar_Ticket_' + name + '.pdf');
-        // Calculate the ratio of the canvas image width to the PDF width
-        const imgWidth = canvas.width;
-        const imgHeight = canvas.height;
-        const ratio = pdfWidth / imgWidth;
-        
-        // Calculate the height the image should take up in the PDF (in mm)
-        let newHeight = imgHeight * ratio;
-
-        // If the calculated height exceeds the default A4 height, we need to adjust the PDF object itself
-        if (newHeight > pdfHeight) {
-            // Recalculate PDF height based on content to ensure the whole ticket fits
-            pdf.internal.pageSize.height = newHeight + 20; // Add 20mm for padding
-            newHeight = pdf.internal.pageSize.height - 20; // Recalculate content height after padding
-        }
-        
-        // Add the image to the PDF (10mm margin on x and y)
-        pdf.addImage(imgData, 'PNG', 10, 10, pdfWidth - 20, newHeight);
-
-        // Save the PDF
-        const name = document.getElementById('ticket-name').textContent.replace(/\s+/g, '_');
-        pdf.save('Data_Bricks_Workshop_Ticket_' + name + '.pdf');
     }).catch(error => {
         console.error("Error during PDF generation:", error);
     });
 }
+</script>
 
-    // 4. Accordion Toggle (remains the same)
-    function toggleAccordion(id) {
-        const content = document.getElementById(id);
-        const icon = document.getElementById(id.replace('-syllabus', '-icon'));
-        const isOpen = content.classList.contains('open');
-
-        if (isOpen) {
-            content.classList.remove('open');
-            icon.classList.remove('rotate-icon');
-        } else {
-            content.classList.add('open');
-            icon.classList.add('rotate-icon');
-        }
-    }
-   
-</script>  
 </body>
 </html>   
 </html>   
