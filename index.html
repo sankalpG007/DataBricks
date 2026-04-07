@@ -1061,6 +1061,24 @@
             </div>
 
             <div class="text-center md:text-right">
+                <h1 class="text-4xl md:text-5xl font-b
+      <!-- Redesigned High-Visibility Ticket -->
+<div id="ticket-container" class="hidden container mx-auto px-4 my-16">
+    <div id="ticket" class="max-w-4xl mx-auto ticket-main-gradient text-white p-6 md:p-12 rounded-3xl shadow-2xl relative overflow-hidden">
+        
+        <!-- TOP: LOGOS & TITLE -->
+        <div class="relative z-10 flex flex-col md:flex-row justify-between items-center gap-6 pb-8 border-b border-white/20">
+            <div class="flex items-center gap-4">
+                <div class="ticket-logo-white shadow-lg">
+                    <img src="S2S.png" alt="S2S Logo" class="h-10 w-auto object-contain">
+                </div>
+                <div class="h-10 w-[1px] bg-white/30 hidden md:block"></div>
+                <div class="ticket-logo-white shadow-lg">
+                    <img src="SS Infotech.png" alt="SS Infotech Logo" class="h-10 w-auto object-contain">
+                </div>
+            </div>
+
+            <div class="text-center md:text-right">
                 <h1 class="text-4xl md:text-5xl font-black tracking-tight uppercase leading-none text-white">ENTRY TICKET</h1>
                 <p class="text-yellow-400 font-bold mt-2">MNC Industry Interactive Seminar on Databricks</p>
             </div>
@@ -1145,11 +1163,66 @@
 </div>
     </div>
 </div>
+<div id="ticket-container" class="hidden container mx-auto px-4 my-16">
+    <div id="ticket" class="max-w-4xl mx-auto bg-gradient-to-br from-purple-700 to-pink-600 text-white p-6 md:p-12 rounded-3xl shadow-2xl relative overflow-hidden transform transition-transform duration-500 hover:scale-[1.01]">
+        
+        <div class="flex flex-col sm:flex-row justify-between items-center pb-6 border-b border-white border-opacity-30">
+            <div class="mb-4 sm:mb-0">
+                <div class="ticket-logo-container">
+                    <img src="SSInfotech white bg.jpg" alt="SS Infotech Logo" class="h-8 md:h-10 w-auto object-contain">
+                </div>
+            </div>
+
+            <div class="text-center sm:text-right">
+                <h1 class="text-4xl md:text-5xl font-extrabold tracking-widest uppercase mb-1">ENTRY TICKET</h1>
+                <p class="text-base md:text-xl font-light text-yellow-100">1-Day Workshop on Data bricks </p>
+            </div>
+        </div>
+
+        <div class="pt-8 md:pt-10 grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            <div>
+                <p class="text-sm font-light uppercase text-yellow-200 mb-1">Attendee</p>
+                <p class="text-2xl md:text-4xl font-bold tracking-tight mb-6" id="ticket-name"></p>
+                
+                <div class="space-y-1 text-sm md:text-base">
+                    <p><strong>College:</strong> <span id="ticket-college"></span></p>
+                    <p><strong>Qualification:</strong> <span id="ticket-qual"></span></p>
+                </div>
+            </div>
+
+            <div class="md:text-right">
+                <p class="text-sm font-light uppercase text-yellow-200 mb-1">Your Unique Access ID</p>
+                <p class="text-3xl md:text-5xl font-extrabold tracking-widest text-white mb-6 bg-purple-900 bg-opacity-30 p-2 rounded-lg" id="ticket-id-display"></p>
+                
+                <div class="space-y-1 text-sm md:text-base">
+                    <p class="font-bold">Date: <span class="font-normal">13 December 2025</span></p>
+                    <p class="font-bold">Time: <span class="font-normal">2:00 PM – 5:00 PM</span></p>
+                    <p class="font-bold">Venue: <span class="font-normal">Vidarbh Hindi Sahitya Sammelan, jhansi Rani square, N Ambazari Rd, Sadar Bazar, Sitabuldi, Nagpur, Maharashtra 440001</span></p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="dashed-divider"></div>
+
+        <div class="mt-4 text-center">
+            <p class="text-lg italic font-light">Thank you for enrolling! Get ready to learn how real-world data brickses happen and how to stop them.</p>
+            <p class="mt-4 text-3xl font-extrabold">See you there! 🚀</p>
+        </div>
+
+        <div class="mt-8 text-center">
+            <button onclick="downloadTicket()" class="bg-white text-purple-700 font-bold py-3 px-8 rounded-full hover:bg-gray-100 transition shadow-lg">
+                📥 Download Ticket as PDF
+            </button>
+        </div>
+    </div>
+</div>
     </main>
 
         <footer class="bg-gray-800 text-white py-6 md:py-8">
         <div class="container mx-auto px-4 text-center">
             <p class="text-sm md:text-base">&copy; 2026 SS Skill 2 Success. All Rights Reserved.</p>
+            <p class="text-sm md:text-base">&copy; 2025 SS Skill 2 Success. All Rights Reserved.</p>
         </div>
     </footer>
 
@@ -1255,6 +1328,10 @@ document.getElementById('enrollment-form').addEventListener('submit', function(e
     const ticket = document.getElementById('ticket');
     if (!window.jspdf || !window.jspdf.jsPDF || !window.html2canvas) {
         console.error("Libraries not loaded.");
+    // Check for library loading
+    if (!window.jspdf || !window.jspdf.jsPDF || !window.html2canvas) {
+        // Since alert() is forbidden, logging to console and returning
+        console.error("PDF generation libraries not loaded.");
         return;
     }
     const { jsPDF } = window.jspdf;
@@ -1267,6 +1344,11 @@ document.getElementById('enrollment-form').addEventListener('submit', function(e
         backgroundColor: null 
     }).then(canvas => {
         const imgData = canvas.toDataURL('image/png');
+    // Use html2canvas to capture the HTML element
+    html2canvas(ticket, { scale: 3 }).then(canvas => { // Increased scale for higher resolution
+        const imgData = canvas.toDataURL('image/png');
+        
+        // Define page orientation and default dimensions (A4 in mm)
         const pdf = new jsPDF('l', 'mm', 'a4');
         const pdfWidth = pdf.internal.pageSize.getWidth();
         const pdfHeight = pdf.internal.pageSize.getHeight();
@@ -1282,6 +1364,29 @@ document.getElementById('enrollment-form').addEventListener('submit', function(e
         pdf.addImage(imgData, 'PNG', 10, 10, pdfWidth - 20, newHeight);
         const name = document.getElementById('ticket-name').textContent.replace(/\s+/g, '_');
         pdf.save('Databricks_Seminar_Ticket_' + name + '.pdf');
+        // Calculate the ratio of the canvas image width to the PDF width
+        const imgWidth = canvas.width;
+        const imgHeight = canvas.height;
+        const ratio = pdfWidth / imgWidth;
+        
+        // Calculate the height the image should take up in the PDF (in mm)
+        let newHeight = imgHeight * ratio;
+
+        // If the calculated height exceeds the default A4 height, we need to adjust the PDF object itself
+        if (newHeight > pdfHeight) {
+            // Recalculate PDF height based on content to ensure the whole ticket fits
+            pdf.internal.pageSize.height = newHeight + 20; // Add 20mm for padding
+            newHeight = pdf.internal.pageSize.height - 20; // Recalculate content height after padding
+        }
+        
+        // Add the image to the PDF (10mm margin on x and y)
+        pdf.addImage(imgData, 'PNG', 10, 10, pdfWidth - 20, newHeight);
+
+        // Save the PDF
+        const name = document.getElementById('ticket-name').textContent.replace(/\s+/g, '_');
+        pdf.save('Data_Bricks_Workshop_Ticket_' + name + '.pdf');
+    }).catch(error => {
+        console.error("Error during PDF generation:", error);
     });
 }
 
@@ -1302,4 +1407,5 @@ document.getElementById('enrollment-form').addEventListener('submit', function(e
    
 </script>  
 </body>
+</html>   
 </html>   
