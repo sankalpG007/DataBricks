@@ -450,15 +450,30 @@
     letter-spacing: 0.05em;
 }
 
+.navbar-logo {
+            height: 100px; /* Increased size */
+            width: auto;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .navbar-logo:hover {
+            transform: scale(1.05); /* Interactive hover effect */
+        }
+
+        @media (max-width: 768px) {
+            .navbar-logo {
+                height: 48px; /* Slightly smaller for mobile */
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
     <!-- Header Section - Improved for Mobile -->
-    <header class="flex justify-between items-center px-4 py-3 fixed top-0 w-full z-50 blur-header mobile-header">
+    <header class="h-[100px] flex justify-between items-center px-4 py-3 fixed top-0 w-full z-50 blur-header mobile-header">
         <!-- Logo on the left - Hidden on mobile -->
-        <img src="S2S.png" class="h-12 w-auto object-contain drop-shadow-md " alt="Logo">
-        
+        <img src="S2S.png" class="h-[160px] navbar-logo drop-shadow-lg" alt="S2S Logo">
         <!-- Centered "Skill 2 Success" text - Responsive -->
         <div class="text-center flex-1 sm:flex-none">
             <h1 class="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
@@ -492,13 +507,13 @@
             
             <!-- Content (improved for mobile) -->
             <div class="container mx-auto px-4 text-center relative z-10">
-                <h1 class="text-3xl md:text-6xl font-extrabold mb-4 md:mb-6 leading-tight drop-shadow-lg hero-title">
-                    Become a Certified in AI & Data Engineering on DataBricks
-                </h1>
-                <p class="text-lg md:text-2xl mb-8 md:mb-12 max-w-2xl mx-auto font-thin hero-subtitle">
-                    Become AI & Data PRACTITIONER IN AI ERA <br> 
-                    <span class="font-bold text-yellow-200">with our 3-month hands-on training program.</span> 
-                </p>
+               <h1 class="text-3xl md:text-6xl font-extrabold mb-4 md:mb-6 leading-tight drop-shadow-lg hero-title">
+    1-Day Free Online Databricks Webinar
+</h1>
+<p class="text-lg md:text-2xl mb-8 md:mb-12 max-w-2xl mx-auto font-thin hero-subtitle">
+    Industry Awareness Session <br>
+    <span class="font-bold text-yellow-200 uppercase">For Working Professionals & Career Switchers</span> 
+</p>
 
                 <a href="#enroll" class="pulse scroll-smooth inline-block bg-yellow-300 hover:bg-yellow-400 text-purple-900 font-bold py-3 px-8 md:py-4 md:px-10 rounded-full text-base md:text-lg shadow-lg transition-transform duration-300 transform hover:scale-110 mobile-btn">
                      Start Your Journey Today
@@ -1093,7 +1108,7 @@
                 
                 <div class="text-center mb-10">
                     <h2 class="text-4xl md:text-5xl font-extrabold mb-3 tracking-tighter bg-gradient-to-r from-purple-700 to-cyan-500 bg-clip-text text-transparent">
-                        Reserve Your Seat
+                        Reserve Your Slot
                     </h2>
                     <p class="text-center text-gray-600 max-w-sm mx-auto text-base">
                         Complete the registration form to obtain your <span class="font-bold text-purple-700">instant digital entry ticket</span>.
@@ -1142,7 +1157,7 @@
                             id="submit-btn"
                             type="submit" 
                             class="w-full h-16 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-extrabold rounded-xl shadow-lg shadow-purple-200 transition-all duration-300 transform hover:scale-[1.03] active:scale-[0.98] text-xl flex items-center justify-center gap-3">
-                            Claim My Entry Ticket <span class="text-2xl">🎟️</span>
+                            Sign up your session <span class="text-2xl">🎟️</span>
                         </button>
                     </div>
                 </form>
@@ -1203,19 +1218,19 @@
         </div>
 
         <div class="relative z-10 mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div class="ticket-inner-card p-4 text-center">
-                <p class="data-label-gold">Event Date</p>
-                <p class="font-bold text-xl text-white">20 April 2026</p>
-            </div>
-            <div class="ticket-inner-card p-4 text-center">
-                <p class="data-label-gold">Session Time</p>
-                <p class="font-bold text-xl text-white">2:00 PM – 5:00 PM</p>
-            </div>
-            <div class="ticket-inner-card p-4 text-center">
-                <p class="data-label-gold">Venue</p>
-                <p class="font-bold text-base leading-tight text-white">Online (MS Teams)</p>
-            </div>
-        </div>
+    <div class="ticket-inner-card p-4 text-center">
+        <p class="data-label-gold">Event Date</p>
+        <p class="font-bold text-xl text-white uppercase">20th April</p>
+    </div>
+    <div class="ticket-inner-card p-4 text-center">
+        <p class="data-label-gold">Session Time</p>
+        <p class="font-bold text-xl text-white">8:00 AM – 10:00 AM</p>
+    </div>
+    <div class="ticket-inner-card p-4 text-center">
+        <p class="data-label-gold">Mode</p>
+        <p class="font-bold text-base leading-tight text-white uppercase">Online Live Interactive</p>
+    </div>
+</div>
 
         <div class="relative z-10 mt-10 text-center border-t border-white/20 pt-8">
             <p class="text-sm md:text-base text-purple-100 italic mb-8">Please present this ticket digitally or in print at the start of the session for verification.</p>
@@ -1232,69 +1247,86 @@
     </div>
 </div>
         
-        <div class="dashed-divider"></div>
-
-        <div class="mt-4 text-center">
-            <p class="text-lg italic font-light">Thank you for enrolling! Get ready to learn how real-world data brickses happen and how to stop them.</p>
-            <p class="mt-4 text-3xl font-extrabold">See you there!</p>
-        </div>
+       
 
         <div class="mt-8 text-center flex flex-col sm:flex-row justify-center gap-4">
    
 </div>
     </div>
 </div>
-<div id="ticket-container" class="hidden container mx-auto px-4 my-16">
-    <div id="ticket" class="max-w-4xl mx-auto bg-gradient-to-br from-purple-700 to-pink-600 text-white p-6 md:p-12 rounded-3xl shadow-2xl relative overflow-hidden transform transition-transform duration-500 hover:scale-[1.01]">
+<div id="ticket-container" class="hidden container mx-auto px-4 my-16 relative z-10">
+    <div id="ticket" class="max-w-4xl mx-auto ticket-main-gradient text-white p-6 md:p-12 rounded-3xl shadow-2xl relative overflow-hidden">
         
-        <div class="flex flex-col sm:flex-row justify-between items-center pb-6 border-b border-white border-opacity-30">
-            <div class="mb-4 sm:mb-0">
-                <div class="ticket-logo-container">
-                    <img src="SSInfotech white bg.jpg" alt="SS Infotech Logo" class="h-8 md:h-10 w-auto object-contain">
+        <div class="relative z-10 flex flex-col md:flex-row justify-between items-center gap-6 pb-8 border-b border-white/20">
+            <div class="flex items-center gap-4">
+                <div class="ticket-logo-white shadow-lg">
+                    <img src="S2S.png" alt="S2S Logo" class="h-20 w-auto object-contain">
+                </div>
+                <div class="h-10 w-[1px] bg-white/30 hidden md:block"></div>
+                <div class="ticket-logo-white shadow-lg">
+                    <img src="SS Infotech.png" alt="SS Infotech Logo" class="h-10 w-auto object-contain">
                 </div>
             </div>
 
-            <div class="text-center sm:text-right">
-                <h1 class="text-4xl md:text-5xl font-extrabold tracking-widest uppercase mb-1">ENTRY TICKET</h1>
-                <p class="text-base md:text-xl font-light text-yellow-100">1-Day Workshop on Data bricks </p>
+            <div class="text-center md:text-right">
+                <h1 class="text-4xl md:text-5xl font-black tracking-tight uppercase leading-none text-white">ENTRY TICKET</h1>
+                <p class="text-yellow-400 font-bold mt-2">1-Day Free Online Databricks Webinar</p>
             </div>
         </div>
 
-        <div class="pt-8 md:pt-10 grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-6 mt-10">
             
-            <div>
-                <p class="text-sm font-light uppercase text-yellow-200 mb-1">Attendee</p>
-                <p class="text-2xl md:text-4xl font-bold tracking-tight mb-6" id="ticket-name"></p>
+            <div class="lg:col-span-2 ticket-inner-card p-6 flex flex-col justify-center">
+                <p class="data-label-gold text-yellow-400 font-bold uppercase text-xs mb-1">Official Delegate</p>
+                <p class="text-3xl md:text-5xl font-bold mb-4 tracking-tight" id="ticket-name"></p>
                 
-                <div class="space-y-1 text-sm md:text-base">
-                    <p><strong>College:</strong> <span id="ticket-college"></span></p>
-                    <p><strong>Qualification:</strong> <span id="ticket-qual"></span></p>
+                <div class="grid grid-cols-2 gap-4 mt-2">
+                    <div>
+                        <p class="data-label-gold text-yellow-400 font-bold uppercase text-xs mb-1">Organization/College</p>
+                        <p class="text-lg font-semibold" id="ticket-college"></p>
+                    </div>
+                    <div>
+                        <p class="data-label-gold text-yellow-400 font-bold uppercase text-xs mb-1">Qualification</p>
+                        <p class="text-lg font-semibold" id="ticket-qual"></p>
+                    </div>
                 </div>
             </div>
 
-            <div class="md:text-right">
-                <p class="text-sm font-light uppercase text-yellow-200 mb-1">Your Unique Access ID</p>
-                <p class="text-3xl md:text-5xl font-extrabold tracking-widest text-white mb-6 bg-purple-900 bg-opacity-30 p-2 rounded-lg" id="ticket-id-display"></p>
-                
-                <div class="space-y-1 text-sm md:text-base">
-                    <p class="font-bold">Date: <span class="font-normal">13 December 2025</span></p>
-                    <p class="font-bold">Time: <span class="font-normal">2:00 PM – 5:00 PM</span></p>
-                    <p class="font-bold">Venue: <span class="font-normal">Vidarbh Hindi Sahitya Sammelan, jhansi Rani square, N Ambazari Rd, Sadar Bazar, Sitabuldi, Nagpur, Maharashtra 440001</span></p>
+            <div class="ticket-inner-card p-6 text-center flex flex-col justify-center border-l-4 border-yellow-400">
+                <p class="data-label-gold text-yellow-400 font-bold uppercase text-xs mb-2">Unique Access ID</p>
+                <div class="ticket-id-box py-4 px-2 bg-white rounded-lg">
+                    <p class="text-2xl md:text-3xl font-black tracking-normal text-red-600 leading-none" id="ticket-id-display"></p>
                 </div>
+                <p class="text-[10px] mt-3 opacity-70">VALID FOR ONLINE INTERACTIVE SESSION</p>
             </div>
         </div>
-        
-        <div class="dashed-divider"></div>
 
-        <div class="mt-4 text-center">
-            <p class="text-lg italic font-light">Thank you for enrolling! Get ready to learn how real-world data brickses happen and how to stop them.</p>
-            <p class="mt-4 text-3xl font-extrabold">See you there! 🚀</p>
+        <div class="relative z-10 mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="ticket-inner-card p-4 text-center">
+                <p class="data-label-gold text-yellow-400 font-bold uppercase text-xs mb-1">Event Date</p>
+                <p class="font-bold text-xl text-white">FINALIZED SOON</p>
+            </div>
+            <div class="ticket-inner-card p-4 text-center">
+                <p class="data-label-gold text-yellow-400 font-bold uppercase text-xs mb-1">Session Time</p>
+                <p class="font-bold text-xl text-white">8:00 AM – 10:00 AM</p>
+            </div>
+            <div class="ticket-inner-card p-4 text-center">
+                <p class="data-label-gold text-yellow-400 font-bold uppercase text-xs mb-1">Mode</p>
+                <p class="font-bold text-base leading-tight text-white uppercase">Online (MS Teams)</p>
+            </div>
         </div>
 
-        <div class="mt-8 text-center">
-            <button onclick="downloadTicket()" class="bg-white text-purple-700 font-bold py-3 px-8 rounded-full hover:bg-gray-100 transition shadow-lg">
-                📥 Download Ticket as PDF
-            </button>
+        <div class="relative z-10 mt-10 text-center border-t border-white/20 pt-8">
+            <p class="text-sm md:text-base text-purple-100 italic mb-8">Thank you for enrolling! Get ready to kickstart your career in Databricks with this industry awareness session.</p>
+            
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <button onclick="downloadTicket()" class="bg-white text-red-600 font-extrabold py-4 px-10 rounded-full hover:bg-gray-100 transition shadow-xl transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2">
+                    <i class="fas fa-file-pdf"></i> DOWNLOAD TICKET
+                </button>
+                <a id="calendar-link" target="_blank" class="bg-yellow-400 text-red-900 font-extrabold py-4 px-10 rounded-full hover:bg-yellow-300 transition shadow-xl transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2 inline-block">
+                    <i class="fas fa-calendar-check"></i> SAVE TO CALENDAR
+                </a>
+            </div>
         </div>
     </div>
 </div>
