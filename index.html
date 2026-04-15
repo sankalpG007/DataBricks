@@ -466,6 +466,95 @@
                 height: 48px; /* Slightly smaller for mobile */
             }
         }
+
+    /* Updated for a larger, more prominent logo */
+.ticket-logo-white {
+    background: white;
+    padding: 8px 12px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70px; /* Increased from 60px */
+    width: auto;
+    min-width: 130px; /* Increased from 120px */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Specific zoom for the S2S logo image */
+.s2s-logo-img {
+    height: 56px !important; /* Forces a larger size */
+    width: auto;
+    object-fit: contain;
+    image-rendering: -webkit-optimize-contrast; /* Sharper rendering for PDF capture */
+}
+
+/* Larger, square container specifically for the S2S circular logo */
+.s2s-zoom-container {
+    background: white;
+    padding: 8px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 110px; /* Much taller than the other logo box */
+    width: 110px;  /* Square shape fits circular logos better */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+/* Force the image to fill the container properly */
+.s2s-logo-fill {
+    height: 95% !important;
+    width: 95% !important;
+    object-fit: contain;
+}
+
+/* Standard box for the rectangular SS Infotech logo */
+.infotech-container {
+    background: white;
+    padding: 8px 15px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px; /* Shorter height works better for wide logos */
+    min-width: 140px;
+
+
+/* Custom Square Container for the circular S2S logo */
+.s2s-zoom-container {
+    background: white;
+    padding: 8px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px; /* Increased height for a "zoomed" look */
+    width: 100px;  /* Square width to fit circular logos properly */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.s2s-logo-large {
+    height: 95% !important; /* Forces the image to fill its new larger box */
+    width: auto;
+    object-fit: contain;
+}
+
+/* Standard Box for the rectangular INFOTECH logo */
+.infotech-container-standard {
+    background-color: white; /* Adds the white background */
+    padding: 10px 18px;      /* Provides clean spacing around the logo */
+    border-radius: 12px;     /* Matches the rounded corners of the S2S box */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    min-width: 140px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+}
+
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -1169,84 +1258,85 @@
 </section>
 
       <!-- Redesigned High-Visibility Ticket -->
-<div id="ticket-container" class="hidden container mx-auto px-4 my-16 relative z-10">
+    <div id="ticket-container" class="hidden container mx-auto px-4 my-16 relative z-10">
     <div id="ticket" class="max-w-4xl mx-auto ticket-main-gradient text-white p-6 md:p-12 rounded-3xl shadow-2xl relative overflow-hidden">
         
         <div class="relative z-10 flex flex-col md:flex-row justify-between items-center gap-6 pb-8 border-b border-white/20">
-            <div class="flex items-center gap-4">
-                <div class="ticket-logo-white shadow-lg">
-                    <img src="S2S.png" alt="S2S Logo" class="h-10 w-auto object-contain">
+            <div class="flex flex-row items-center gap-6">
+                <div class="s2s-zoom-container">
+                    <img src="S2S.png" alt="S2S Logo" class="s2s-logo-large">
                 </div>
-                <div class="h-10 w-[1px] bg-white/30 hidden md:block"></div>
-                <div class="ticket-logo-white shadow-lg">
-                    <img src="SS Infotech.png" alt="SS Infotech Logo" class="h-10 w-auto object-contain">
+                <div class="h-20 w-[2px] bg-white/30 hidden md:block"></div>
+                <div class="infotech-container-standard">
+                    <img src="SSInfotech white bg.jpg" alt="SS Infotech Logo" class="h-10 w-auto object-contain">
                 </div>
             </div>
 
             <div class="text-center md:text-right">
                 <h1 class="text-4xl md:text-5xl font-black tracking-tight uppercase leading-none text-white">ENTRY TICKET</h1>
-                <p class="text-yellow-400 font-bold mt-2">MNC Industry Interactive Seminar on Databricks</p>
+                <p class="text-yellow-400 font-bold mt-2">1-Day Free Online Databricks Webinar</p>
             </div>
         </div>
 
         <div class="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-6 mt-10">
-            
             <div class="lg:col-span-2 ticket-inner-card p-6 flex flex-col justify-center">
-                <p class="data-label-gold">Official Delegate</p>
+                <p class="data-label-gold text-yellow-400 font-bold uppercase text-xs mb-1">Official Delegate</p>
                 <p class="text-3xl md:text-5xl font-bold mb-4 tracking-tight" id="ticket-name"></p>
-                
                 <div class="grid grid-cols-2 gap-4 mt-2">
                     <div>
-                        <p class="data-label-gold">Organization/College</p>
+                        <p class="data-label-gold font-bold uppercase text-xs mb-1">Organization/College</p>
                         <p class="text-lg font-semibold" id="ticket-college"></p>
                     </div>
                     <div>
-                        <p class="data-label-gold">Qualification</p>
+                        <p class="data-label-gold font-bold uppercase text-xs mb-1">Qualification</p>
                         <p class="text-lg font-semibold" id="ticket-qual"></p>
                     </div>
                 </div>
             </div>
 
             <div class="ticket-inner-card p-6 text-center flex flex-col justify-center border-l-4 border-yellow-400">
-                <p class="data-label-gold mb-2">Unique Access ID</p>
-               <div class="ticket-id-box">
-    <!-- Reduced font size and tracking to ensure it fits inside the box -->
-    <p class="text-2xl md:text-3xl font-black tracking-normal break-all leading-none" id="ticket-id-display"></p>
-</div>
-                <p class="text-[10px] mt-3 opacity-70">VALID FOR ONE ENTRY ONLY</p>
+                <p class="data-label-gold text-yellow-400 font-bold uppercase text-xs mb-2">Unique Access ID</p>
+                <div class="bg-white rounded-lg py-4 px-2">
+                    <p class="text-2xl md:text-3xl font-black tracking-normal text-red-600 leading-none" id="ticket-id-display"></p>
+                </div>
+                <p class="text-[10px] mt-3 opacity-70 italic">VALID FOR ONLINE INTERACTIVE SESSION</p>
             </div>
         </div>
 
         <div class="relative z-10 mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
-    <div class="ticket-inner-card p-4 text-center">
-        <p class="data-label-gold">Event Date</p>
-        <p class="font-bold text-xl text-white uppercase">18th April</p>
-    </div>
-    <div class="ticket-inner-card p-4 text-center">
-        <p class="data-label-gold">Session Time</p>
-        <p class="font-bold text-xl text-white">8:00 AM – 10:00 AM</p>
-    </div>
-    <div class="ticket-inner-card p-4 text-center">
-        <p class="data-label-gold">Mode</p>
-        <p class="font-bold text-base leading-tight text-white uppercase">Online Live Interactive</p>
-    </div>
-</div>
+            <div class="ticket-inner-card p-4 text-center">
+                <p class="data-label-gold text-yellow-400 font-bold uppercase text-xs mb-1">Event Date</p>
+                <p class="font-bold text-xl text-white">FINALIZED SOON</p>
+            </div>
+            <div class="ticket-inner-card p-4 text-center">
+                <p class="data-label-gold text-yellow-400 font-bold uppercase text-xs mb-1">Session Time</p>
+                <p class="font-bold text-xl text-white">8:00 AM – 10:00 AM</p>
+            </div>
+            <div class="ticket-inner-card p-4 text-center">
+                <p class="data-label-gold text-yellow-400 font-bold uppercase text-xs mb-1">Venue</p>
+                <p class="font-bold text-base leading-tight text-white uppercase">Google Meet (Online)</p>
+            </div>
+        </div>
 
         <div class="relative z-10 mt-10 text-center border-t border-white/20 pt-8">
-            <p class="text-sm md:text-base text-purple-100 italic mb-8">Please present this ticket digitally or in print at the start of the session for verification.</p>
+            <p class="text-sm md:text-base text-purple-100 italic mb-8">Please use the button below to join the live session directly.</p>
             
             <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <button onclick="downloadTicket()" class="bg-white text-red-600 font-extrabold py-4 px-10 rounded-full hover:bg-gray-100 transition shadow-xl transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2 w-full sm:w-auto">
+                <a href="https://meet.google.com/gxa-vzqd-ghb" target="_blank" class="bg-blue-600 text-white font-extrabold py-4 px-8 rounded-full hover:bg-blue-500 transition shadow-xl transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2">
+                    <i class="fas fa-video"></i> JOIN GOOGLE MEET
+                </a>
+
+                <button onclick="downloadTicket()" class="bg-white text-red-600 font-extrabold py-4 px-8 rounded-full hover:bg-gray-100 transition shadow-xl transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2">
                     <i class="fas fa-file-pdf"></i> DOWNLOAD TICKET
                 </button>
-                <a id="calendar-link" target="_blank" class="bg-yellow-400 text-red-900 font-extrabold py-4 px-10 rounded-full hover:bg-yellow-300 transition shadow-xl transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2 w-full sm:w-auto inline-block">
+
+                <a id="calendar-link" target="_blank" class="bg-yellow-400 text-red-900 font-extrabold py-4 px-8 rounded-full hover:bg-yellow-300 transition shadow-xl transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2 inline-block">
                     <i class="fas fa-calendar-check"></i> SAVE TO CALENDAR
                 </a>
             </div>
         </div>
     </div>
-</div>
-        
+</div>  
        
 
         <div class="mt-8 text-center flex flex-col sm:flex-row justify-center gap-4">
@@ -1254,16 +1344,16 @@
 </div>
     </div>
 </div>
-<div id="ticket-container" class="hidden container mx-auto px-4 my-16 relative z-10">
+  <div id="ticket-container" class="hidden container mx-auto px-4 my-16 relative z-10">
     <div id="ticket" class="max-w-4xl mx-auto ticket-main-gradient text-white p-6 md:p-12 rounded-3xl shadow-2xl relative overflow-hidden">
         
         <div class="relative z-10 flex flex-col md:flex-row justify-between items-center gap-6 pb-8 border-b border-white/20">
-            <div class="flex items-center gap-4">
-                <div class="ticket-logo-white shadow-lg">
-                    <img src="S2S.png" alt="S2S Logo" class="h-20 w-auto object-contain">
+            <div class="flex flex-row items-center gap-6">
+                <div class="s2s-zoom-container">
+                    <img src="S2S.png" alt="S2S Logo" class="s2s-logo-fill">
                 </div>
-                <div class="h-10 w-[1px] bg-white/30 hidden md:block"></div>
-                <div class="ticket-logo-white shadow-lg">
+                <div class="h-20 w-[2px] bg-white/30 hidden md:block"></div>
+                <div class="infotech-container shadow-lg">
                     <img src="SS Infotech.png" alt="SS Infotech Logo" class="h-10 w-auto object-contain">
                 </div>
             </div>
@@ -1275,7 +1365,6 @@
         </div>
 
         <div class="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-6 mt-10">
-            
             <div class="lg:col-span-2 ticket-inner-card p-6 flex flex-col justify-center">
                 <p class="data-label-gold text-yellow-400 font-bold uppercase text-xs mb-1">Official Delegate</p>
                 <p class="text-3xl md:text-5xl font-bold mb-4 tracking-tight" id="ticket-name"></p>
@@ -1311,19 +1400,24 @@
                 <p class="font-bold text-xl text-white">8:00 AM – 10:00 AM</p>
             </div>
             <div class="ticket-inner-card p-4 text-center">
-                <p class="data-label-gold text-yellow-400 font-bold uppercase text-xs mb-1">Mode</p>
-                <p class="font-bold text-base leading-tight text-white uppercase">Online (MS Teams)</p>
+                <p class="data-label-gold text-yellow-400 font-bold uppercase text-xs mb-1">Venue</p>
+                <p class="font-bold text-base leading-tight text-white uppercase">Google Meet (Online)</p>
             </div>
         </div>
 
         <div class="relative z-10 mt-10 text-center border-t border-white/20 pt-8">
-            <p class="text-sm md:text-base text-purple-100 italic mb-8">Thank you for enrolling! Get ready to kickstart your career in Databricks with this industry awareness session.</p>
+            <p class="text-sm md:text-base text-purple-100 italic mb-8">Thank you for enrolling! Use the buttons below to download your pass or join the meeting directly.</p>
             
             <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <button onclick="downloadTicket()" class="bg-white text-red-600 font-extrabold py-4 px-10 rounded-full hover:bg-gray-100 transition shadow-xl transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2">
+                <a href="https://meet.google.com/gxa-vzqd-ghb" target="_blank" class="bg-blue-600 text-white font-extrabold py-4 px-8 rounded-full hover:bg-blue-500 transition shadow-xl transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2">
+                    <i class="fas fa-video"></i> JOIN GOOGLE MEET
+                </a>
+
+                <button onclick="downloadTicket()" class="bg-white text-red-600 font-extrabold py-4 px-8 rounded-full hover:bg-gray-100 transition shadow-xl transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2">
                     <i class="fas fa-file-pdf"></i> DOWNLOAD TICKET
                 </button>
-                <a id="calendar-link" target="_blank" class="bg-yellow-400 text-red-900 font-extrabold py-4 px-10 rounded-full hover:bg-yellow-300 transition shadow-xl transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2 inline-block">
+
+                <a id="calendar-link" target="_blank" class="bg-yellow-400 text-red-900 font-extrabold py-4 px-8 rounded-full hover:bg-yellow-300 transition shadow-xl transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2 inline-block">
                     <i class="fas fa-calendar-check"></i> SAVE TO CALENDAR
                 </a>
             </div>
@@ -1448,10 +1542,12 @@
 
     // Use a high scale (4) to ensure the dark colors look professional in the PDF
     html2canvas(ticket, { 
-        scale: 3, // High resolution
+        scale: 4, // High resolution
     useCORS: true, 
     logging: false,
     backgroundColor: null,
+    dpi: 300,
+    letterRendering: true,
     scrollX: 0,
     scrollY: -window.scrollY, // Fixes potential alignment issues if page is scrolled
     windowWidth: document.documentElement.offsetWidth,
